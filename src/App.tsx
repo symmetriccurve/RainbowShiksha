@@ -14,6 +14,7 @@ import Impact from "./pages/Impact";
 import OurStory from "./pages/OurStory";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import ScrollToTop from "./components/ScrollToTop";
+import ShareCards from "./pages/ShareCards";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import WhatsAppFloat from "./components/WhatsAppFloat";
 
@@ -37,6 +38,7 @@ function App() {
             <Route path="/extended-support" element={<ExtendedSupport />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms-conditions" element={<TermsAndConditions />} />
+            <Route path="/share" element={<ShareCards />} />
           </Routes>
         </main>
         <Footer />
