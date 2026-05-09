@@ -22,100 +22,12 @@ const OurStory: React.FC = () => {
 
   const timeline = [
     {
-      year: "May 2013",
-      title: "Inception of Rainbow Shiksha",
+      year: "February 2026",
+      title: "Bag Donation for School Children",
       description:
-        "Rainbow Shiksha was started with the inspiration of Saanthwana Group.",
-      icon: Users,
-      image: ourJourneyImage2013May,
-    },
-    {
-      year: "July 2014",
-      title: "Vivekananda Book Distribution",
-      description:
-        "Distributed Vivekananda books on the occasion of Vivekananda’s 150th Anniversary.",
+        "Donated school bags to children in Guntur in collaboration with KBR Foundation.",
       icon: BookOpen,
-      image: ourJourneyImage2014July,
-    },
-    {
-      year: "August 2015",
-      title: "Supporting Students’ Education",
-      description:
-        "Paid one year school fee for Kiran (8th Class, GSNR Kurnool) & Shirisha (10th Class, Hyderabad).",
-      icon: Award,
-      image: ourJourneyImage2015August,
-    },
-    {
-      year: "July 2016",
-      title: "Helping Blind Students",
-      description:
-        "Paid college exam fee and competitive exam fee for blind students.",
-      icon: Calendar,
-      image: ourJourneyImage2016July,
-    },
-    {
-      year: "January 2017",
-      title: "Stationery Distribution",
-      description:
-        "Distributed stationery in Hyderabad, Kurnool, and Bangalore to encourage students before their annual exams.",
-      icon: BookOpen,
-      image: ourJourneyImage2017January,
-    },
-    {
-      year: "April 2018",
-      title: "Festive Celebrations",
-      description:
-        "Celebrated Diwali and Holi festivals in different orphanages in Hyderabad.",
-      icon: Users,
-      image: ourJourneyImage2018April,
-    },
-    {
-      year: "May 2019",
-      title: "Motivating Govt School Students",
-      description:
-        "Conducted General Knowledge exams and distributed gifts in government schools.",
-      icon: Award,
-      image: ourJourneyImage2019May,
-    },
-    {
-      year: "July 2020",
-      title: "Children’s Day Celebration",
-      description:
-        "Celebrated Children’s Day in an orphanage located in Siddaganga (Tumkur).",
-      icon: Calendar,
-      image: ourJourneyImage2020July,
-    },
-    {
-      year: "February 2021",
-      title: "Louis Braille Day Support",
-      description:
-        "Arranged food for blind students on the occasion of Louis Braille’s birthday anniversary.",
-      icon: Heart,
-      image: ourJourneyImage2021February,
-    },
-    {
-      year: "May 2022",
-      title: "Games & Education Awareness",
-      description:
-        "Conducted games and explained the importance of education to children at Mother Theresa Orphanage, Hyderabad.",
-      icon: Users,
-      image: ourJourneyImage2022May,
-    },
-    {
-      year: "June 2023",
-      title: "Technology for Schools",
-      description:
-        "Donated 3 new computers and 2 laptops to an aided school in Karnataka.",
-      icon: Award,
-      image: ourJourneyImage2023June,
-    },
-    {
-      year: "September 2024",
-      title: "Support for Blind Students",
-      description:
-        "Personally visited colleges to pay fees for blind students and helped retrieve their certificates from management.",
-      icon: Heart,
-      image: ourJourneyImage2024September,
+      image: ourJourneyImage2026February,
     },
     {
       year: "October 2025",
@@ -126,12 +38,100 @@ const OurStory: React.FC = () => {
       image: ourJourneyImage2025October,
     },
     {
-      year: "February 2026",
-      title: "Bag Donation for School Children",
+      year: "September 2024",
+      title: "Support for Blind Students",
       description:
-        "Donated school bags to children in Guntur in collaboration with KBR Foundation.",
+        "Personally visited colleges to pay fees for blind students and helped retrieve their certificates from management.",
+      icon: Heart,
+      image: ourJourneyImage2024September,
+    },
+    {
+      year: "June 2023",
+      title: "Technology for Schools",
+      description:
+        "Donated 3 new computers and 2 laptops to an aided school in Karnataka.",
+      icon: Award,
+      image: ourJourneyImage2023June,
+    },
+    {
+      year: "May 2022",
+      title: "Games & Education Awareness",
+      description:
+        "Conducted games and explained the importance of education to children at Mother Theresa Orphanage, Hyderabad.",
+      icon: Users,
+      image: ourJourneyImage2022May,
+    },
+    {
+      year: "February 2021",
+      title: "Louis Braille Day Support",
+      description:
+        "Arranged food for blind students on the occasion of Louis Braille’s birthday anniversary.",
+      icon: Heart,
+      image: ourJourneyImage2021February,
+    },
+    {
+      year: "July 2020",
+      title: "Children’s Day Celebration",
+      description:
+        "Celebrated Children’s Day in an orphanage located in Siddaganga (Tumkur).",
+      icon: Calendar,
+      image: ourJourneyImage2020July,
+    },
+    {
+      year: "May 2019",
+      title: "Motivating Govt School Students",
+      description:
+        "Conducted General Knowledge exams and distributed gifts in government schools.",
+      icon: Award,
+      image: ourJourneyImage2019May,
+    },
+    {
+      year: "April 2018",
+      title: "Festive Celebrations",
+      description:
+        "Celebrated Diwali and Holi festivals in different orphanages in Hyderabad.",
+      icon: Users,
+      image: ourJourneyImage2018April,
+    },
+    {
+      year: "January 2017",
+      title: "Stationery Distribution",
+      description:
+        "Distributed stationery in Hyderabad, Kurnool, and Bangalore to encourage students before their annual exams.",
       icon: BookOpen,
-      image: ourJourneyImage2026February,
+      image: ourJourneyImage2017January,
+    },
+    {
+      year: "July 2016",
+      title: "Helping Blind Students",
+      description:
+        "Paid college exam fee and competitive exam fee for blind students.",
+      icon: Calendar,
+      image: ourJourneyImage2016July,
+    },
+    {
+      year: "August 2015",
+      title: "Supporting Students’ Education",
+      description:
+        "Paid one year school fee for Kiran (8th Class, GSNR Kurnool) & Shirisha (10th Class, Hyderabad).",
+      icon: Award,
+      image: ourJourneyImage2015August,
+    },
+    {
+      year: "July 2014",
+      title: "Vivekananda Book Distribution",
+      description:
+        "Distributed Vivekananda books on the occasion of Vivekananda’s 150th Anniversary.",
+      icon: BookOpen,
+      image: ourJourneyImage2014July,
+    },
+    {
+      year: "May 2013",
+      title: "Inception of Rainbow Shiksha",
+      description:
+        "Rainbow Shiksha was started with the inspiration of Saanthwana Group.",
+      icon: Users,
+      image: ourJourneyImage2013May,
     },
   ];
 
