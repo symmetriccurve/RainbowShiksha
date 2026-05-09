@@ -9,7 +9,7 @@ interface SEOHeadProps {
 
 const SITE_NAME = "Rainbow Shiksha";
 const BASE_URL = "https://www.rainbowshiksha.org";
-const DEFAULT_IMAGE = `${BASE_URL}/og-image.jpg`;
+const DEFAULT_IMAGE = `${BASE_URL}/og-image.png`;
 
 const SEOHead: React.FC<SEOHeadProps> = ({ title, description, path = "/" }) => {
   const fullTitle = `${title} | ${SITE_NAME}`;

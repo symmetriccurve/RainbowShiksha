@@ -102,7 +102,9 @@ const ShareCards: React.FC = () => {
       {/* Hero */}
       <section className="bg-gradient-to-br from-blue-50 via-green-50 to-yellow-50 py-16">
         <div className="max-w-3xl mx-auto px-4 text-center">
-          <img src={logo} alt="Rainbow Shiksha" className="h-20 mx-auto mb-6" />
+          <div className="flex justify-center mb-6">
+            <img src={logo} alt="Rainbow Shiksha" className="h-24 object-contain drop-shadow-md" />
+          </div>
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             Share Our{" "}
             <span className="bg-gradient-to-r from-blue-600 via-green-600 to-yellow-600 bg-clip-text text-transparent">
