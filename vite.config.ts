@@ -7,7 +7,7 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ["lucide-react"],
   },
-  base: "/RainbowShiksha/",
+  base: "/",
   server: {
     port: 3000,
     host: true,
