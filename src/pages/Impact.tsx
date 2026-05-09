@@ -9,6 +9,7 @@ import {
   Users,
 } from "lucide-react";
 import React, { useState } from "react";
+import SEOHead from "../components/SEOHead";
 
 import IndraReddyPhoto from "/src/assets/impact/Indra Reddy.jpeg";
 import RagavendraPhoto from "/src/assets/impact/Ragavendra.png";
@@ -159,6 +160,11 @@ const Impact: React.FC = () => {
 
   return (
     <div>
+      <SEOHead
+        title="Our Impact – Real Stories of Change"
+        description="Read how Rainbow Shiksha has transformed lives — from paying school fees for Kiran and Indra Reddy to donating computers and supporting blind students across India."
+        path="#/impact"
+      />
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-50 via-green-50 to-yellow-50 py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

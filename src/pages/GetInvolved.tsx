@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Users, Heart, Briefcase, GraduationCap, Calendar, ArrowRight, CheckCircle } from 'lucide-react';
+import SEOHead from '../components/SEOHead';
 
 const GetInvolved: React.FC = () => {
   const [selectedOpportunity, setSelectedOpportunity] = useState<string | null>(null);
@@ -92,6 +93,11 @@ const GetInvolved: React.FC = () => {
 
   return (
     <div>
+      <SEOHead
+        title="Get Involved – Volunteer & Support Rainbow Shiksha"
+        description="Join Rainbow Shiksha as a volunteer, donor, or partner. Help us deliver education, stationery, and support to underprivileged children across India."
+        path="#/get-involved"
+      />
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-50 via-green-50 to-yellow-50 py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

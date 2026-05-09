@@ -1,6 +1,7 @@
 import { Building2, Check, Copy, Heart, Shield, Star } from "lucide-react";
 // DonationsWithQR.tsx
 import { useEffect, useRef, useState } from "react";
+import SEOHead from "../components/SEOHead";
 
 import QRCode from "qrcode";
 import LaxmiDurgaImage from "../assets/Donations/Laxmi Durga.jpeg";
@@ -187,6 +188,11 @@ export default function DonationsWithQR() {
 
   return (
     <div>
+      <SEOHead
+        title="Donate – Support Children's Education in India"
+        description="Your donation to Rainbow Shiksha helps underprivileged children pay school fees, get stationery, and access technology. Donate via UPI or bank transfer today."
+        path="#/donate"
+      />
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-50 via-green-50 to-yellow-50 py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

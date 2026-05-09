@@ -1,6 +1,7 @@
-import { Heart, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import React, { useState } from "react";
+import logo from "../assets/rainbow_shiksha_logo.png";
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -23,12 +24,7 @@ const Header: React.FC = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <div className="w-10 h-10 bg-gradient-to-r from-blue-500 via-green-500 to-yellow-500 rounded-lg flex items-center justify-center">
-              <Heart className="h-6 w-6 text-white" />
-            </div>
-            <span className="text-2xl font-bold text-gray-900">
-              Rainbow Shiksha
-            </span>
+            <img src={logo} alt="Rainbow Shiksha" className="h-10 w-auto" />
           </Link>
 
           {/* Desktop Navigation */}

@@ -1,9 +1,15 @@
 import React from "react";
 import { Shield, FileText, Lock, Users, Eye, Mail } from "lucide-react";
+import SEOHead from "../components/SEOHead";
 
 const PrivacyPolicy: React.FC = () => {
   return (
     <div>
+      <SEOHead
+        title="Privacy Policy"
+        description="Read Rainbow Shiksha's privacy policy — how we collect, use, and protect your personal information when you use our website or donate to our programs."
+        path="#/privacy-policy"
+      />
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-50 via-green-50 to-yellow-50 py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

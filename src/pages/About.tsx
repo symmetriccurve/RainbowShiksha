@@ -1,6 +1,7 @@
 import { Award, Heart, Linkedin, Mail, Target, Users } from "lucide-react";
 
 import React from "react";
+import SEOHead from "../components/SEOHead";
 
 // Import team photos
 import MallikarjunaPhoto from "../assets/team-photos/Mallikarjuna.png";
@@ -157,6 +158,11 @@ const About: React.FC = () => {
 
   return (
     <div>
+      <SEOHead
+        title="About Us – Our Mission, Vision & Team"
+        description="Learn about Rainbow Shiksha's mission to empower underprivileged children through education. Meet the dedicated volunteer team driving change across India since 2013."
+        path="#/about"
+      />
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-50 via-green-50 to-yellow-50 py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

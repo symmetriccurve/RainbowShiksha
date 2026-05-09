@@ -1,5 +1,6 @@
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
+import SEOHead from "../components/SEOHead";
 
 import bagDonationKbr from "../assets/gallery/bag_donation_kbr.png";
 import bagDonationKbr2 from "../assets/gallery/bag_donation_kbr_2.png";
@@ -58,7 +59,13 @@ const Gallery = () => {
   }, [index, close, next, prev]);
 
   return (
-    <section
+    <>
+      <SEOHead
+        title="Gallery – Photos from Our Events & Programs"
+        description="Browse photos from Rainbow Shiksha events — bag donations, computer distributions, Children's Day celebrations, stationery drives, and more across India."
+        path="#/gallery"
+      />
+      <section
       className="bg-white py-12 sm:py-16"
       aria-label="Event photo gallery"
     >
@@ -157,6 +164,7 @@ const Gallery = () => {
         )}
       </div>
     </section>
+    </>
   );
 };
 

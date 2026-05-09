@@ -1,5 +1,6 @@
 import React from 'react';
 import { Heart, Users, Building2, HandHeart, Award, Globe } from 'lucide-react';
+import SEOHead from '../components/SEOHead';
 
 const ExtendedSupport: React.FC = () => {
   const charities = [
@@ -55,6 +56,11 @@ const ExtendedSupport: React.FC = () => {
 
   return (
     <div>
+      <SEOHead
+        title="Extended Support – Partner Charities & Causes"
+        description="Rainbow Shiksha's extended support network — partner charities and causes we champion alongside our core education programs across India."
+        path="#/extended-support"
+      />
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-50 via-green-50 to-yellow-50 py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

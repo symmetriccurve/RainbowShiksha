@@ -1,9 +1,15 @@
 import React from "react";
 import { FileText, Shield, AlertTriangle, Users, CreditCard, Info } from "lucide-react";
+import SEOHead from "../components/SEOHead";
 
 const TermsAndConditions: React.FC = () => {
   return (
     <div>
+      <SEOHead
+        title="Terms & Conditions"
+        description="Terms and conditions for using the Rainbow Shiksha website and making donations to support our education programs for underprivileged children in India."
+        path="#/terms-conditions"
+      />
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-50 via-green-50 to-yellow-50 py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

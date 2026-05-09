@@ -1,6 +1,5 @@
 import {
   Facebook,
-  Heart,
   Instagram,
   Linkedin,
   Mail,
@@ -11,6 +10,7 @@ import {
 
 import { Link } from "react-router-dom";
 import React from "react";
+import logo from "../assets/rainbow_shiksha_logo.png";
 
 const Footer: React.FC = () => {
   return (
@@ -19,11 +19,8 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Organization Info */}
           <div>
-            <Link to="/" className="flex items-center space-x-2 mb-4">
-              <div className="w-8 h-8 bg-gradient-to-r from-blue-500 via-green-500 to-yellow-500 rounded-lg flex items-center justify-center">
-                <Heart className="h-5 w-5 text-white" />
-              </div>
-              <span className="text-xl font-bold">Rainbow Shiksha</span>
+            <Link to="/" className="flex items-center mb-4">
+              <img src={logo} alt="Rainbow Shiksha" className="h-8 w-auto" />
             </Link>
             <p className="text-gray-300 text-sm mb-4">
               Empowering children through education and creating a brighter

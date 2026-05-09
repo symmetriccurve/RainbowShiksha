@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import SEOHead from '../components/SEOHead';
 import { Calendar, MapPin, Clock, Users, Filter, X } from 'lucide-react';
 
 // Import past event images
@@ -180,6 +181,11 @@ const Events: React.FC = () => {
 
   return (
     <div>
+      <SEOHead
+        title="Events – Upcoming & Past Programs"
+        description="See Rainbow Shiksha's upcoming events and past programs — Children's Day celebrations, stationery drives, GK exams, and more across Hyderabad, Kurnool, and Bangalore."
+        path="#/events"
+      />
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-50 via-green-50 to-yellow-50 py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

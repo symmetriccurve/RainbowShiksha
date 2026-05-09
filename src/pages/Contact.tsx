@@ -1,5 +1,6 @@
 import { Clock, Facebook, Instagram, Linkedin, Mail, MapPin, MessageCircle, Phone, Send, Twitter } from "lucide-react";
 import React, { useState } from "react";
+import SEOHead from "../components/SEOHead";
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -111,6 +112,11 @@ Submitted via Rainbow Shiksha Website`;
 
   return (
     <div>
+      <SEOHead
+        title="Contact Us"
+        description="Get in touch with Rainbow Shiksha. Reach out to volunteer, donate, or learn more about our education programs for underprivileged children across India."
+        path="#/contact"
+      />
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-50 via-green-50 to-yellow-50 py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

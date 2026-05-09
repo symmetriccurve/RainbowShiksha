@@ -10,6 +10,7 @@ import {
 
 import { Link } from "react-router-dom";
 import React from "react";
+import SEOHead from "../components/SEOHead";
 import KiranPhoto from "/src/assets/uploads/2022/09/photos-2022-095.jpg";
 import RamuluPhoto from "/src/assets/impact/Ramulu.jpeg";
 import IndraReddyPhoto from "/src/assets/impact/Indra Reddy.jpeg";
@@ -65,6 +66,11 @@ const Home: React.FC = () => {
 
   return (
     <div>
+      <SEOHead
+        title="Empowering Education for Every Child in India"
+        description="Rainbow Shiksha is a registered non-profit NGO supporting underprivileged children with education, stationery, fee assistance, and community programs across India since 2013."
+        path="#/"
+      />
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-blue-50 via-green-50 to-yellow-50 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28">

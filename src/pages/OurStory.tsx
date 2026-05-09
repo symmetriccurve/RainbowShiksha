@@ -16,6 +16,7 @@ import ourJourneyImage2024September from "/src/assets/our-journey/2024_september
 import ourJourneyImage2025October from "/src/assets/our-journey/2025_october.jpg";
 import ourJourneyImage2026February from "/src/assets/our-journey/2026_february.png";
 import MallikarjunaPhoto from "../assets/team-photos/Mallikarjuna.png";
+import SEOHead from "../components/SEOHead";
 
 const OurStory: React.FC = () => {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
@@ -195,6 +196,11 @@ const OurStory: React.FC = () => {
 
   return (
     <div>
+      <SEOHead
+        title="Our Journey – 13 Years of Transforming Lives (2013–2026)"
+        description="Explore Rainbow Shiksha's journey from 2013 to 2026 — stationery drives, fee support for blind students, computer donations, bag distribution and more across India."
+        path="#/story"
+      />
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-50 via-green-50 to-yellow-50 py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
