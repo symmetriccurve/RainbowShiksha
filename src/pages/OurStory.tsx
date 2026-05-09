@@ -1,19 +1,20 @@
 import { Award, BookOpen, Calendar, Heart, Users, ChevronLeft, ChevronRight, X } from "lucide-react";
 
 import React, { useCallback, useEffect, useState } from "react";
-import ourJouneryImage1 from "/src/assets/our-journey/image1.jpg";
-import ourJouneryImage10 from "/src/assets/our-journey/image10.jpg";
-import ourJouneryImage11 from "/src/assets/our-journey/image11.jpg";
-import ourJouneryImage12 from "/src/assets/our-journey/image12.jpg";
-import ourJouneryImage13 from "/src/assets/our-journey/image13.jpg";
-import ourJouneryImage2 from "/src/assets/our-journey/image2.jpg";
-import ourJouneryImage3 from "/src/assets/our-journey/image3.jpg";
-import ourJouneryImage4 from "/src/assets/our-journey/image4.jpg";
-import ourJouneryImage5 from "/src/assets/our-journey/image5.jpg";
-import ourJouneryImage6 from "/src/assets/our-journey/image6.jpg";
-import ourJouneryImage7 from "/src/assets/our-journey/image7.jpg";
-import ourJouneryImage8 from "/src/assets/our-journey/image8.jpg";
-import ourJouneryImage9 from "/src/assets/our-journey/image9.jpg";
+import ourJourneyImage2013May from "/src/assets/our-journey/2013_may.jpg";
+import ourJourneyImage2014July from "/src/assets/our-journey/2014_july.jpg";
+import ourJourneyImage2015August from "/src/assets/our-journey/2015_august.jpg";
+import ourJourneyImage2016July from "/src/assets/our-journey/2016_july.jpg";
+import ourJourneyImage2017January from "/src/assets/our-journey/2017_january.jpg";
+import ourJourneyImage2018April from "/src/assets/our-journey/2018_april.jpg";
+import ourJourneyImage2019May from "/src/assets/our-journey/2019_may.jpg";
+import ourJourneyImage2020July from "/src/assets/our-journey/2020_july.jpg";
+import ourJourneyImage2021February from "/src/assets/our-journey/2021_february.jpg";
+import ourJourneyImage2022May from "/src/assets/our-journey/2022_may.jpg";
+import ourJourneyImage2023June from "/src/assets/our-journey/2023_june.jpg";
+import ourJourneyImage2024September from "/src/assets/our-journey/2024_september.jpg";
+import ourJourneyImage2025October from "/src/assets/our-journey/2025_october.jpg";
+import ourJourneyImage2026February from "/src/assets/our-journey/2026_february.png";
 import MallikarjunaPhoto from "../assets/team-photos/Mallikarjuna.png";
 
 const OurStory: React.FC = () => {
@@ -21,108 +22,116 @@ const OurStory: React.FC = () => {
 
   const timeline = [
     {
-      year: "2013",
+      year: "May 2013",
       title: "Inception of Rainbow Shiksha",
       description:
         "Rainbow Shiksha was started with the inspiration of Saanthwana Group.",
       icon: Users,
-      image: ourJouneryImage1,
+      image: ourJourneyImage2013May,
     },
     {
-      year: "2014",
+      year: "July 2014",
       title: "Vivekananda Book Distribution",
       description:
         "Distributed Vivekananda books on the occasion of Vivekananda’s 150th Anniversary.",
       icon: BookOpen,
-      image: ourJouneryImage2,
+      image: ourJourneyImage2014July,
     },
     {
-      year: "2015",
+      year: "August 2015",
       title: "Supporting Students’ Education",
       description:
         "Paid one year school fee for Kiran (8th Class, GSNR Kurnool) & Shirisha (10th Class, Hyderabad).",
       icon: Award,
-      image: ourJouneryImage3,
+      image: ourJourneyImage2015August,
     },
     {
-      year: "2016",
+      year: "July 2016",
       title: "Helping Blind Students",
       description:
         "Paid college exam fee and competitive exam fee for blind students.",
       icon: Calendar,
-      image: ourJouneryImage4,
+      image: ourJourneyImage2016July,
     },
     {
-      year: "2017",
+      year: "January 2017",
       title: "Stationery Distribution",
       description:
         "Distributed stationery in Hyderabad, Kurnool, and Bangalore to encourage students before their annual exams.",
       icon: BookOpen,
-      image: ourJouneryImage5,
+      image: ourJourneyImage2017January,
     },
     {
-      year: "2018",
+      year: "April 2018",
       title: "Festive Celebrations",
       description:
         "Celebrated Diwali and Holi festivals in different orphanages in Hyderabad.",
       icon: Users,
-      image: ourJouneryImage6,
+      image: ourJourneyImage2018April,
     },
     {
-      year: "2019",
+      year: "May 2019",
       title: "Motivating Govt School Students",
       description:
         "Conducted General Knowledge exams and distributed gifts in government schools.",
       icon: Award,
-      image: ourJouneryImage7,
+      image: ourJourneyImage2019May,
     },
     {
-      year: "2020",
+      year: "July 2020",
       title: "Children’s Day Celebration",
       description:
         "Celebrated Children’s Day in an orphanage located in Siddaganga (Tumkur).",
       icon: Calendar,
-      image: ourJouneryImage8,
+      image: ourJourneyImage2020July,
     },
     {
-      year: "2021",
+      year: "February 2021",
       title: "Louis Braille Day Support",
       description:
         "Arranged food for blind students on the occasion of Louis Braille’s birthday anniversary.",
       icon: Heart,
-      image: ourJouneryImage9,
+      image: ourJourneyImage2021February,
     },
     {
-      year: "2022",
+      year: "May 2022",
       title: "Games & Education Awareness",
       description:
         "Conducted games and explained the importance of education to children at Mother Theresa Orphanage, Hyderabad.",
       icon: Users,
-      image: ourJouneryImage10,
+      image: ourJourneyImage2022May,
     },
     {
-      year: "2023",
+      year: "June 2023",
       title: "Technology for Schools",
       description:
         "Donated 3 new computers and 2 laptops to an aided school in Karnataka.",
       icon: Award,
-      image: ourJouneryImage11,
+      image: ourJourneyImage2023June,
     },
     {
-      year: "2024",
+      year: "September 2024",
       title: "Support for Blind Students",
       description:
         "Personally visited colleges to pay fees for blind students and helped retrieve their certificates from management.",
       icon: Heart,
-      image: ourJouneryImage12,
+      image: ourJourneyImage2024September,
     },
     {
-      year: "2025",
+      year: "October 2025",
       title: "Official Registration",
       description:
         "Rainbow Shiksha was officially registered to scale and create a bigger impact.",
       icon: Users,
-      image: ourJouneryImage13,
+      image: ourJourneyImage2025October,
+    },
+    {
+      year: "February 2026",
+      title: "Bag Donation for School Children",
+      description:
+        "Donated school bags to children in Guntur in collaboration with KBR Foundation.",
+      icon: BookOpen,
+      image: ourJourneyImage2026February,
     },
   ];
 

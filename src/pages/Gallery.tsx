@@ -1,16 +1,18 @@
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 
-const images = import.meta.glob(
-  "/src/assets/uploads/**/*.{png,jpg,jpeg,svg}",
-  { eager: true, as: "url" } // return plain URLs instead of modules
-);
+import bagDonationKbr from "../assets/gallery/bag_donation_kbr.png";
+import bagDonationKbr2 from "../assets/gallery/bag_donation_kbr_2.png";
 
+const images = import.meta.glob("/src/assets/uploads/**/*.{png,jpg,jpeg,svg}", {
+  eager: true,
+  as: "url",
+});
 
 // Self-contained Gallery: no props, HTML buttons only, no TS primitive annotations
 const Gallery = () => {
   const [index, setIndex] = useState<number | null>(null); // active photo index or null
-  const urls = Object.values(images); // array of URL strings
+  const urls = [...Object.values(images), bagDonationKbr2, bagDonationKbr];
   //   return (
   //     <>
   //       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
@@ -26,7 +28,6 @@ const Gallery = () => {
   //     </>
   //   );
 
-
   // Use actual uploaded images for lightbox
   const sorted = urls;
 
@@ -34,14 +35,14 @@ const Gallery = () => {
   const close = useCallback(() => setIndex(null), []);
   const next = useCallback(
     () => setIndex((i) => (i === null ? i : (i + 1) % sorted.length)),
-    [sorted.length]
+    [sorted.length],
   );
   const prev = useCallback(
     () =>
       setIndex((i) =>
-        i === null ? i : (i - 1 + sorted.length) % sorted.length
+        i === null ? i : (i - 1 + sorted.length) % sorted.length,
       ),
-    [sorted.length]
+    [sorted.length],
   );
 
   // Keyboard navigation in lightbox
@@ -55,7 +56,6 @@ const Gallery = () => {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [index, close, next, prev]);
-
 
   return (
     <section

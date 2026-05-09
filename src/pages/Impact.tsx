@@ -9,10 +9,11 @@ import {
   Users,
 } from "lucide-react";
 import React, { useState } from "react";
+
+import IndraReddyPhoto from "/src/assets/impact/Indra Reddy.jpeg";
 import RagavendraPhoto from "/src/assets/impact/Ragavendra.png";
 import RamuluPhoto from "/src/assets/impact/Ramulu.jpeg";
-import IndraReddyPhoto from "/src/assets/impact/Indra Reddy.jpeg";
-import ourJouneryImage11 from "/src/assets/our-journey/image11.jpg";
+// import ourJouneryImage11 from "/src/assets/our-journey/image11.jpg";
 
 const Impact: React.FC = () => {
   const [currentStoryIndex, setCurrentStoryIndex] = useState(0);
@@ -51,32 +52,38 @@ const Impact: React.FC = () => {
   ];
 
   const successStories = [
-    {
-      name: "Sri Madhava Vidya Mandira School",
-      location: "Sira, Karnataka",
-      before: "The school lacked adequate technology resources to provide digital learning opportunities for students, limiting their exposure to modern educational tools and computer literacy.",
-      after: "Rainbow Shiksha donated 3 computers and 2 laptops to the school for the 2024–25 academic year, enabling students to access digital learning resources and enhancing their computer literacy skills.",
-      image: ourJouneryImage11,
-      achievement: "Enhanced digital learning infrastructure for students",
-      quote: "The donation of computers and laptops has been immensely helpful for the learning of our children. It is a matter of pride that Rainbow Shiksha Association is providing such valuable social service to support education."
-    },
+    // {
+    //   name: "Sri Madhava Vidya Mandira School",
+    //   location: "Sira, Karnataka",
+    //   before: "The school lacked adequate technology resources to provide digital learning opportunities for students, limiting their exposure to modern educational tools and computer literacy.",
+    //   after: "Rainbow Shiksha donated 3 computers and 2 laptops to the school for the 2024–25 academic year, enabling students to access digital learning resources and enhancing their computer literacy skills.",
+    //   image: ourJouneryImage11,
+    //   achievement: "Enhanced digital learning infrastructure for students",
+    //   quote: "The donation of computers and laptops has been immensely helpful for the learning of our children. It is a matter of pride that Rainbow Shiksha Association is providing such valuable social service to support education."
+    // },
     {
       name: "Ramulu",
       location: "Rural Kurnool District, Andhra Pradesh",
-      before: "Struggled to pay his college fees and even risked losing his certificates due to financial hardship.",
-      after: "With Rainbow Shiksha's support from Inter 2nd year through his Degree Final year, Ramulu completed his postgraduate studies and secured a government job at Kurnool Medical College.",
+      before:
+        "Struggled to pay his college fees and even risked losing his certificates due to financial hardship.",
+      after:
+        "With Rainbow Shiksha's support from Inter 2nd year through his Degree Final year, Ramulu completed his postgraduate studies and secured a government job at Kurnool Medical College.",
       image: RamuluPhoto,
       achievement: "Completed his Degree Final year",
-      quote: "Without this support, I would have never completed my education. Now I stand proud as a government employee, ready to help others like me."
+      quote:
+        "Without this support, I would have never completed my education. Now I stand proud as a government employee, ready to help others like me.",
     },
     {
       name: "Indra Reddy",
       location: "Rural Kurnool District, Andhra Pradesh",
-      before: "Faced the possibility of discontinuing her studies because her family couldn't afford tuition fees.",
-      after: "Rainbow Shiksha sponsored her education from Inter 1st year to her Degree Final year, enabling her to graduate with distinction and begin a professional career.",
+      before:
+        "Faced the possibility of discontinuing her studies because her family couldn't afford tuition fees.",
+      after:
+        "Rainbow Shiksha sponsored her education from Inter 1st year to her Degree Final year, enabling her to graduate with distinction and begin a professional career.",
       image: IndraReddyPhoto,
       achievement: "Graduated with top honors in her degree program",
-      quote: "Education changed everything for me. I hope to give back so no student has to drop out for lack of money."
+      quote:
+        "Education changed everything for me. I hope to give back so no student has to drop out for lack of money.",
     },
     {
       name: "V. Raghavendra",
@@ -90,8 +97,7 @@ const Impact: React.FC = () => {
       achievement: "Scored 92% in postgraduate exams",
       quote:
         "Rainbow Shiksha gave me the books and support I needed to succeed. Now I want to help other children like me.",
-    }
-    
+    },
   ];
 
   const programImpact = [
@@ -147,7 +153,7 @@ const Impact: React.FC = () => {
 
   const prevStory = () => {
     setCurrentStoryIndex(
-      (prev) => (prev - 1 + successStories.length) % successStories.length
+      (prev) => (prev - 1 + successStories.length) % successStories.length,
     );
   };
 
