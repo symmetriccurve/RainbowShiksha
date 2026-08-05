@@ -14,7 +14,7 @@ import SEOHead from "../components/SEOHead";
 import KiranPhoto from "/src/assets/uploads/2022/09/photos-2022-095.jpg";
 import RamuluPhoto from "/src/assets/impact/Ramulu.jpeg";
 import IndraReddyPhoto from "/src/assets/impact/Indra Reddy.jpeg";
-import RainbowShikshaLogo from "/src/assets/rainbow_shiksha_logo.png";
+
 
 const Home: React.FC = () => {
   const stats = [
@@ -75,14 +75,6 @@ const Home: React.FC = () => {
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-blue-50 via-green-50 to-yellow-50 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28">
-          {/* Logo prominently on the left */}
-          <div className="flex justify-start mb-10">
-            <img
-              src={RainbowShikshaLogo}
-              alt="Rainbow Shiksha Logo"
-              className="h-24 md:h-32 w-auto drop-shadow-lg"
-            />
-          </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
