@@ -11,6 +11,9 @@ import ExamKitEventImage from '../assets/past-events/ExamKit Event.jpeg';
 import ScribeEventImage from '../assets/past-events/Scribe Event.jpeg';
 import DivyaJyothiEventImage from '../assets/past-events/Divya Jyothi Event.jpeg';
 import DictionaryDistributionImage from '../assets/past-events/10th Class dictionary distribution.jpeg';
+import ShaikSameeraFeeImage from '../assets/past-events/Shaik Sameera Fee Payment.jpg';
+import KMounikaSchoolFeeImage from '../assets/past-events/K Mounika School Fee.jpg';
+import SMVMWebsiteLaunchImage from '../assets/past-events/SMVM Website Launch.jpg';
 
 const Events: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState('all');
@@ -56,6 +59,39 @@ const Events: React.FC = () => {
   ];
 
   const pastEvents = [
+    {
+      id: 11,
+      title: 'SMVM School Website Launch – Digital Initiative',
+      date: 'August 1, 2026',
+      location: 'Sri Madhava Vidya Mandira School, Sira, Tumkur, Karnataka',
+      type: 'support',
+      description: 'As part of Rainbow Shiksha\'s Digital Initiative program, our skilled IT team developed a professional website for Sri Madhava Vidya Mandira School and successfully launched it on 1st August 2026. This digital platform provides parents, students, and visitors with convenient access to all essential school information, enhancing communication and engagement within the educational community.',
+      image: SMVMWebsiteLaunchImage,
+      attendees: 10,
+      outcome: 'Successfully developed and launched a professional website for SMVM School'
+    },
+    {
+      id: 9,
+      title: 'Tuition Fee Support for Shaik Sameera – B.Sc. Nursing',
+      date: 'February 12, 2026',
+      location: 'Bollineni College of Nursing, Nellore',
+      type: 'support',
+      description: 'Paid ₹20,000 towards the 1st Year, 2nd Term tuition fee for student Shaik Sameera, who is pursuing B.Sc. Nursing at Bollineni College of Nursing, Nellore. Rainbow Shiksha is proud to have supported Shaik Sameera in paying her college fee, helping her continue her journey towards a brighter tomorrow.',
+      image: ShaikSameeraFeeImage,
+      attendees: 1,
+      outcome: 'Paid ₹20,000 tuition fee for Shaik Sameera\'s B.Sc. Nursing 1st Year, 2nd Term'
+    },
+    {
+      id: 10,
+      title: 'School Fee Support for K. Mounika – Class 10',
+      date: 'July 1, 2026',
+      location: 'Roots Kiddy\'s Global School, Adoni Mandal, Kurnool District',
+      type: 'support',
+      description: 'Paid ₹20,000 towards the 1st Term school fee for student K. Mounika, who is studying in Class 10 at Roots Kiddy\'s Global School, Adoni Mandal, Kurnool District. We are happy to have supported K. Mounika by paying her Term 1 fee, helping her continue her journey towards a brighter tomorrow.',
+      image: KMounikaSchoolFeeImage,
+      attendees: 1,
+      outcome: 'Paid ₹20,000 school fee for K. Mounika\'s Class 10, 1st Term'
+    },
     {
       id: 1,
       title: 'Scribe Arrangement for Visually Impaired Students',
