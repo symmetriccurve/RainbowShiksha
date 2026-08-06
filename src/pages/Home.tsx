@@ -74,7 +74,7 @@ const Home: React.FC = () => {
       />
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-blue-50 via-green-50 to-yellow-50 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28">
+        <div className="max-w-7xl mx-auto px-4 sm:px-3 lg:px-8 pt-10 pb-20 md:pt-14 md:pb-28">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
