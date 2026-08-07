@@ -46,23 +46,23 @@ Submitted via Rainbow Shiksha Website`;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Build the WhatsApp message template
     const whatsappMessage = buildWhatsAppMessage();
-    
+
     // Encode the message for URL
     const encodedMessage = encodeURIComponent(whatsappMessage);
-    
+
     // WhatsApp phone number (from contact info: +91 9959277190)
     const phoneNumber = "919959277190"; // WhatsApp format: country code + number without + or spaces
-    
+
     // Open WhatsApp with the pre-filled message
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
     window.open(whatsappUrl, "_blank");
-    
+
     // Show success message
     alert("Opening WhatsApp to send your message. Please review and send!");
-    
+
     // Reset form
     setFormData({
       name: "",
@@ -365,7 +365,7 @@ Submitted via Rainbow Shiksha Website`;
                   </a>
                   <a
                     target="_blank"
-                    href="https://www.linkedin.com/in/rainbow-shiksha-education-development-trust-32367a417"
+                    href="https://www.linkedin.com/in/rainbow-shiksha-education-development-trust"
                     className="text-blue-700 hover:text-blue-800 transition-colors hover:scale-110 transform duration-200"
                   >
                     <Linkedin className="h-6 w-6" />

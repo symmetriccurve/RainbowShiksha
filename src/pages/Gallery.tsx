@@ -2,8 +2,7 @@ import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import SEOHead from "../components/SEOHead";
 
-import bagDonationKbr from "../assets/gallery/bag_donation_kbr.png";
-import bagDonationKbr2 from "../assets/gallery/bag_donation_kbr_2.png";
+
 
 const images = import.meta.glob("/src/assets/uploads/**/*.{png,jpg,jpeg,svg}", {
   eager: true,
@@ -13,23 +12,7 @@ const images = import.meta.glob("/src/assets/uploads/**/*.{png,jpg,jpeg,svg}", {
 // Self-contained Gallery: no props, HTML buttons only, no TS primitive annotations
 const Gallery = () => {
   const [index, setIndex] = useState<number | null>(null); // active photo index or null
-  const urls = [...Object.values(images), bagDonationKbr2, bagDonationKbr];
-  //   return (
-  //     <>
-  //       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-  //         {urls.map((src, i) => (
-  //           <img
-  //             key={i}
-  //             src={src}
-  //             alt={`Event ${i + 1}`}
-  //             className="rounded-lg shadow-md"
-  //           />
-  //         ))}
-  //       </div>
-  //     </>
-  //   );
-
-  // Use actual uploaded images for lightbox
+  const urls = Object.values(images);
   const sorted = urls;
 
   const open = useCallback((i: number) => setIndex(i), []);
