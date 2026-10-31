@@ -53,21 +53,21 @@ const About: React.FC = () => {
       role: "Founder",
       bio: "Visionary leader with extensive experience in education and social development, driving Rainbow Shiksha's mission to transform lives through education.",
       image: MallikarjunaPhoto,
-      linkedin: "#",
+      linkedin: "https://www.linkedin.com/in/mallikarjunamadanakanti/",
     },
     {
       name: "Sudhindra",
       role: "Secretary",
       bio: "Dedicated to organizational excellence and ensuring smooth operations across all Rainbow Shiksha programs and initiatives.",
       image: SudhindraPhoto,
-      linkedin: "#",
+      linkedin: "https://www.linkedin.com/in/sudhindra-shivanagere-a2566551/",
     },
     {
       name: "Deepak Kumar",
       role: "Treasurer",
       bio: "Financial stewardship expert committed to transparent and responsible management of resources for maximum educational impact.",
       image: DeepakKumarPhoto,
-      linkedin: "#",
+      linkedin: "https://www.linkedin.com/in/deepak-kumar-ks-aa687882/",
     },
     {
       name: "Naveen Kumar",
@@ -88,7 +88,7 @@ const About: React.FC = () => {
       role: "Member Secretary",
       bio: "Focused on member engagement and community building to strengthen Rainbow Shiksha's impact and reach.",
       image: SravanPhoto,
-      linkedin: "#",
+      linkedin: "https://www.linkedin.com/in/nunna-sravan-kumar-008667129/",
     },
     {
       name: "Mohan",
@@ -109,14 +109,14 @@ const About: React.FC = () => {
       role: "Board Member",
       bio: "Passionate advocate for educational equity, bringing fresh perspectives and innovative approaches to our work.",
       image: VivekPhoto,
-      linkedin: "#",
+      linkedin: "https://www.linkedin.com/in/amujuri-vivek-88208137/",
     },
     {
       name: "Veena",
       role: "Board Member",
       bio: "Dedicated to advancing educational opportunities and ensuring every child has access to quality learning experiences.",
       image: VeenaPhoto,
-      linkedin: "#",
+      linkedin: "https://www.linkedin.com/in/veena-garlapati-6a9860253/",
     },
     {
       name: "Prahlada",
@@ -279,12 +279,16 @@ const About: React.FC = () => {
                 <p className="text-blue-600 font-medium mb-3">{member.role}</p>
                 <p className="text-gray-600 text-sm mb-4">{member.bio}</p>
                 <div className="flex justify-center space-x-3">
-                  <a
-                    href={member.linkedin}
-                    className="text-gray-400 hover:text-blue-600 transition-colors"
-                  >
-                    <Linkedin className="h-5 w-5" />
-                  </a>
+                  {member.linkedin && member.linkedin !== "#" && (
+                    <a
+                      href={member.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-400 hover:text-blue-600 transition-colors"
+                    >
+                      <Linkedin className="h-5 w-5" />
+                    </a>
+                  )}
                   {/* <a
                     href="mailto:team@rainbowshiksha.org"
                     className="text-gray-400 hover:text-blue-600 transition-colors"

@@ -1,15 +1,15 @@
 import { Calendar, Clock, Filter, MapPin, Users, X } from "lucide-react";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 
 // Import past event images
 import ChildrensDayImage from "../assets/past-events/childrens day.png";
 import DictionaryDistributionImage from "../assets/past-events/10th Class dictionary distribution.jpeg";
 import DivyaJyothiEventImage from "../assets/past-events/Divya Jyothi Event.jpeg";
 import ExamKitEventImage from "../assets/past-events/ExamKit Event.jpeg";
-import MadhavaAppreciationLetterImage from "../assets/past-events/madhava-school-site-appreciation-letter.jpeg";
 import KMounikaSchoolFeeImage from "../assets/past-events/K Mounika School Fee.jpg";
 import LaptopDistributionImage from "../assets/past-events/laptop distribution event.jpeg";
+import { Link } from "react-router-dom";
+import MadhavaAppreciationLetterImage from "../assets/past-events/madhava-school-site-appreciation-letter.jpeg";
 import OrphanageImage from "../assets/past-events/orphanage.png";
 import SEOHead from "../components/SEOHead";
 import ScribeEventImage from "../assets/past-events/Scribe Event.jpeg";
@@ -26,8 +26,8 @@ const Events: React.FC = () => {
   const upcomingEvents = [
     {
       id: 2,
-      title: "Children's Day Celebration 2025",
-      date: "November 14, 2025",
+      title: "Children's Day Celebration 2026",
+      date: "November 14, 2026",
       time: "10:00 AM - 4:00 PM",
       location: "Hyderabad & Kurnool",
       type: "program",
@@ -40,8 +40,8 @@ const Events: React.FC = () => {
     },
     {
       id: 3,
-      title: "National Youth Day Celebration 2026",
-      date: "January 14, 2026",
+      title: "National Youth Day Celebration 2027",
+      date: "January 14, 2027",
       time: "9:00 AM - 6:00 PM",
       location: "Hyderabad",
       type: "program",

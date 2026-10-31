@@ -177,6 +177,7 @@ Youtube: Yet to Create one*/}
               </a>
               <a
                 target="_blank"
+                rel="noopener noreferrer"
                 href="https://www.linkedin.com/in/rainbow-shiksha-education-development-trust-32367a417"
                 className="text-gray-300 hover:text-blue-600 transition-colors"
               >

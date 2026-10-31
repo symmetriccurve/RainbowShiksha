@@ -13,6 +13,7 @@ import React, { useState } from "react";
 import IndraReddyPhoto from "/src/assets/impact/Indra Reddy.jpeg";
 import RagavendraPhoto from "/src/assets/impact/Ragavendra.png";
 import RamuluPhoto from "/src/assets/impact/Ramulu.jpeg";
+import BalarajuPhoto from "/src/assets/impact/Kodavatikanti-Balaraju.jpeg";
 import SEOHead from "../components/SEOHead";
 
 // import ourJouneryImage11 from "/src/assets/our-journey/image11.jpg";
@@ -96,6 +97,7 @@ const Impact: React.FC = () => {
       after:
         "After completing his postgraduate studies, he secured a government job at Kurnool Medical College.",
       image: RagavendraPhoto,
+      fit: "contain",
       achievement: "Scored 92% in postgraduate exams",
       quote:
         "Rainbow Shiksha gave me the books and support I needed to succeed. Now I want to help other children like me.",
@@ -130,7 +132,14 @@ const Impact: React.FC = () => {
     },
   ];
 
-  const testimonials = [
+  const testimonials: {
+    type: string;
+    name: string;
+    relation: string;
+    quote: string;
+    location: string;
+    image?: string;
+  }[] = [
     {
       type: "Partner School",
       name: "Sangama Mataji",
@@ -146,6 +155,7 @@ const Impact: React.FC = () => {
       quote:
         "Running a charitable trust is noble work, and managing the finances to keep everything afloat can certainly be a tough mountain to climb. It’s wonderful to hear that the Rainbow Shiksha Charitable Trust stepped up to support your kids with brand-new school bags! Small acts of community support like that make a huge difference in easing operational pressures. Keep up the great work with your trust!",
       location: "Guntur, Andhra Pradesh",
+      image: BalarajuPhoto,
     },
   ];
 
@@ -280,11 +290,15 @@ const Impact: React.FC = () => {
                 </div>
               </div>
 
-              <div className="relative h-[500px]">
+              <div className="relative h-[500px] bg-gray-100">
                 <img
                   src={successStories[currentStoryIndex].image}
                   alt={successStories[currentStoryIndex].name}
-                  className="w-full h-full object-cover"
+                  className={`w-full h-full ${
+                    successStories[currentStoryIndex].fit === "contain"
+                      ? "object-contain"
+                      : "object-cover"
+                  }`}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
               </div>
@@ -385,9 +399,20 @@ const Impact: React.FC = () => {
                 className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300"
               >
                 <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-blue-100 to-green-100 rounded-full flex items-center justify-center mr-3">
-                    <Heart className="h-6 w-6 text-blue-600" />
-                  </div>
+                  {testimonial.image ? (
+                    <div className="w-12 h-12 rounded-full overflow-hidden mr-3 flex-shrink-0">
+                      <img
+                        src={testimonial.image}
+                        alt={testimonial.name}
+                        className="w-full h-full object-cover"
+                        style={{ objectPosition: "50% 15%" }}
+                      />
+                    </div>
+                  ) : (
+                    <div className="w-12 h-12 bg-gradient-to-br from-blue-100 to-green-100 rounded-full flex items-center justify-center mr-3">
+                      <Heart className="h-6 w-6 text-blue-600" />
+                    </div>
+                  )}
                   <div>
                     <div className="font-semibold text-gray-900">
                       {testimonial.name}
