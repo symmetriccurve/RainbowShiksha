@@ -99,7 +99,7 @@ const Events: React.FC = () => {
       type: "support",
       description:
         "As part of Rainbow Shiksha's Digital Initiative program, our skilled IT team developed a professional website for Sri Madhava Vidya Mandira School and successfully launched it on 1st August 2026. This digital platform provides parents, students, and visitors with convenient access to all essential school information, enhancing communication and engagement within the educational community.",
-      galleryFolder: "madhava-school-website",
+      galleryFolder: "madhava-school-website-2026",
       image: MadhavaAppreciationLetterImage,
       attendees: 10,
       outcome:
