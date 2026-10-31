@@ -13,6 +13,7 @@ import React, { useState } from "react";
 import IndraReddyPhoto from "/src/assets/impact/Indra Reddy.jpeg";
 import RagavendraPhoto from "/src/assets/impact/Ragavendra.png";
 import RamuluPhoto from "/src/assets/impact/Ramulu.jpeg";
+import SangammaPhoto from "/src/assets/impact/Sangamma.png";
 import BalarajuPhoto from "/src/assets/impact/Kodavatikanti-Balaraju.jpeg";
 import SEOHead from "../components/SEOHead";
 
@@ -147,6 +148,7 @@ const Impact: React.FC = () => {
       quote:
         "Your Organization donated 3 Computers and 2 Laptops to our school SRI MADHAVA VIDYA MANDIRA for the 2024–25 academic year. It is helpful for the learning of the children. It is a matter of pride that RAINBOW SHIKSHA ASSOCIATION is providing such social service. The Management Board, Staff and children of SRI MADHAVA VIDYA MANDIRA pray that God's grace will always be upon you for your selfless service.",
       location: "Sira, Karnataka",
+      image: SangammaPhoto,
     },
     {
       type: "Community Leader",
