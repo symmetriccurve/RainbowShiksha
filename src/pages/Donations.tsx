@@ -1,4 +1,4 @@
-import { Building2, Check, Copy, Heart, Shield, Star } from "lucide-react";
+import { Building2, Check, Copy, Heart, Quote, Shield } from "lucide-react";
 // DonationsWithQR.tsx
 import { useEffect, useRef, useState } from "react";
 
@@ -11,9 +11,9 @@ import ShaikSameeraImage from "../assets/Donations/Shaik-Sameera.jpeg";
 
 /* Legacy preset amounts retained for future interactive flows
 const presetAmounts = [
-  { amount: 500, impact: "1 child’s school supplies for a month" },
-  { amount: 1000, impact: "2 children’s school supplies for a month" },
-  { amount: 2500, impact: "Basic kit for 5 children" },
+  { amount: 500, impact: "1 student’s school supplies for a month" },
+  { amount: 1000, impact: "2 students’ school supplies for a month" },
+  { amount: 2500, impact: "Basic kit for 5 students" },
   { amount: 5000, impact: "After-school support for a small group" },
   { amount: 10000, impact: "Sponsor classroom materials" },
   { amount: 25000, impact: "Fund a learning camp" },
@@ -27,23 +27,31 @@ const testimonials = [
     donation: "Member since 10 years",
     quote:
       "I have been part of rainbow family since last 10 years. They are providing education support to needy students is really a good work. Balancing professional , family , society work is not a simple job. Big shout out to the team for their hard work and dedication towards society.  Thanks to Rainbow Shiksha for making  me part of this support cycle.",
-    rating: 5,
   },
   {
-    name: "Rajesh Gupta",
-    location: "Delhi",
-    donation: "Sponsored 2 children",
+    name: "Srinivas Gupta",
+    location: "Japan",
+    donation: "Sponsored 2 Students",
     quote:
-      "The transparency and regular updates about the children I sponsor make me feel connected to their journey. It's amazing to see them grow and succeed.",
-    rating: 5,
+      "The transparency and regular updates about the Students I sponsor make me feel connected to their journey. It's amazing to see them grow and succeed.",
   },
   {
-    name: "Microsoft India",
+    name: "Dr. S.A.Sreenivas",
     location: "Bangalore",
-    donation: "Corporate Partner",
     quote:
       "Our partnership with Rainbow Shiksha aligns with our mission to empower every person on the planet. Their work in digital education is commendable.",
-    rating: 5,
+  },
+  {
+    name: "B Shambulingesh",
+    location: "holagunda",
+    quote:
+      "Rainbow Shiksha is doing wonderful work for underprivileged students. I have seen how their support helps children stay in school and keep dreaming. Their dedication is truly commendable.",
+  },
+  {
+    name: "Urmila Kamalapuram",
+    location: "Hyderabad",
+    quote:
+      "It is a joy to be part of the Rainbow Shiksha family. The team's efforts are making education possible for students who would otherwise be left behind. My heartfelt appreciation to everyone involved.",
   },
 ];
 
@@ -72,7 +80,7 @@ const sponsorshipOptions: SponsorshipOption[] = [
     grade: "B.Ed",
     school: "Yemmiganuru, Kurnool",
     story:
-      "Studying B.Ed to become an educator and inspire the next generation. Passionate about teaching and making quality education accessible to all children.",
+      "Studying B.Ed to become an educator and inspire the next generation. Passionate about teaching and making quality education accessible to all student.",
     image: RamuluImage,
   },
   {
@@ -264,8 +272,8 @@ export default function DonationsWithQR() {
   return (
     <div>
       <SEOHead
-        title="Donate – Support Children's Education in India"
-        description="Your donation to Rainbow Shiksha helps underprivileged children pay school fees, get stationery, and access technology. Donate via UPI or bank transfer today."
+        title="Donate – Support Students' Education in India"
+        description="Your donation to Rainbow Shiksha helps underprivileged student pay school fees, get stationery, and access technology. Donate via UPI or bank transfer today."
         path="#/donate"
       />
       {/* Hero Section */}
@@ -277,7 +285,7 @@ export default function DonationsWithQR() {
           <p className="text-xl text-gray-600 leading-relaxed mb-8">
             Your donation directly impacts a child's education and future. Every
             contribution, no matter the size, helps {ORG_NAME} provide quality
-            education to children who need it most.
+            education to student who need it most.
           </p>
           <div className="flex items-center justify-center space-x-8 text-sm text-gray-600">
             <div className="flex items-center">
@@ -527,7 +535,7 @@ export default function DonationsWithQR() {
                 </div>
               ) : (
                 <div className="mt-4 text-sm text-gray-600">
-                  This will help {Math.floor(currentAmount / 500)} children with
+                  This will help {Math.floor(currentAmount / 500)} student with
                   school supplies for one month.
                 </div>
               )}
@@ -922,29 +930,32 @@ export default function DonationsWithQR() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
-              <div key={index} className="bg-gray-50 rounded-xl p-6">
-                <div className="flex items-center mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className="h-5 w-5 text-yellow-400 fill-current"
-                    />
-                  ))}
-                </div>
-                <p className="text-gray-700 mb-4 italic">
-                  "{testimonial.quote}"
+              <div
+                key={index}
+                className="flex flex-col bg-white border border-gray-200 rounded-2xl p-6 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+              >
+                <Quote className="h-8 w-8 text-blue-200 mb-3 flex-shrink-0" />
+                <p className="text-gray-700 leading-relaxed flex-grow mb-6">
+                  {testimonial.quote}
                 </p>
-                <div className="border-t pt-4">
-                  <div className="font-semibold text-gray-900">
-                    {testimonial.name}
+                <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
+                  <div className="w-11 h-11 rounded-full bg-gradient-to-br from-blue-500 to-green-500 text-white flex items-center justify-center font-semibold flex-shrink-0">
+                    {testimonial.name.charAt(0)}
                   </div>
-                  <div className="text-sm text-gray-600">
-                    {testimonial.location}
-                  </div>
-                  <div className="text-sm text-blue-600">
-                    {testimonial.donation}
+                  <div className="min-w-0">
+                    <div className="font-semibold text-gray-900 truncate">
+                      {testimonial.name}
+                    </div>
+                    <div className="text-sm text-gray-500">
+                      {testimonial.location}
+                    </div>
                   </div>
                 </div>
+                {"donation" in testimonial && testimonial.donation && (
+                  <span className="self-start mt-4 inline-block px-3 py-1 bg-blue-50 text-blue-700 text-xs font-medium rounded-full">
+                    {testimonial.donation}
+                  </span>
+                )}
               </div>
             ))}
           </div>

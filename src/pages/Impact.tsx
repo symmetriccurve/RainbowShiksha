@@ -13,8 +13,9 @@ import React, { useState } from "react";
 import IndraReddyPhoto from "/src/assets/impact/Indra Reddy.jpeg";
 import RagavendraPhoto from "/src/assets/impact/Ragavendra.png";
 import RamuluPhoto from "/src/assets/impact/Ramulu.jpeg";
-import SangammaPhoto from "/src/assets/impact/Sangamma.png";
-import BalarajuPhoto from "/src/assets/impact/Kodavatikanti-Balaraju.jpeg";
+import SangammaPhoto from "/src/assets/impact/community-voices/Sangamma.png";
+import BalarajuPhoto from "/src/assets/impact/community-voices/Kodavatikanti-Balaraju.jpeg";
+import BoyaRamuduPhoto from "/src/assets/impact/community-voices/boya-ramudu.jpeg";
 import SEOHead from "../components/SEOHead";
 
 // import ourJouneryImage11 from "/src/assets/our-journey/image11.jpg";
@@ -138,7 +139,7 @@ const Impact: React.FC = () => {
     name: string;
     relation: string;
     quote: string;
-    location: string;
+    location?: string;
     image?: string;
   }[] = [
     {
@@ -158,6 +159,14 @@ const Impact: React.FC = () => {
         "Running a charitable trust is noble work, and managing the finances to keep everything afloat can certainly be a tough mountain to climb. It’s wonderful to hear that the Rainbow Shiksha Charitable Trust stepped up to support your kids with brand-new school bags! Small acts of community support like that make a huge difference in easing operational pressures. Keep up the great work with your trust!",
       location: "Guntur, Andhra Pradesh",
       image: BalarajuPhoto,
+    },
+    {
+      type: "Student",
+      name: "Boya Ramudu",
+      relation: "Rainbow Shiksha Beneficiary",
+      quote:
+        "I am truly grateful to Rainbow Shiksha for covering my college and examination fees, helping me complete my graduation. They also sponsored my sister's competitive exam fees. Thank you, Rainbow Shiksha, for being a ray of hope and empowering students like us through education!",
+      image: BoyaRamuduPhoto,
     },
   ];
 
