@@ -25,6 +25,7 @@ const titleOverrides: Record<string, string> = {
   "bag-donation-kbr": "Bag Donation – KBR",
   "shaik-sameera-fee-support-2026": "Shaik Sameera – Fee Support",
   "mounika-fee-support-2025": "K. Mounika – Fee Support",
+  "madhava-school-computers-donation-june-2024": "Madhava School Computers Donation (June)",
   "madhava-school-website-2026": "Madhava School Website Launch in the News",
   "braille-event-jan-2021": "Braille Day Event (January)",
   "p-indra-reddy-fee-support-2022": "P. Indra Reddy – Fee Support",
