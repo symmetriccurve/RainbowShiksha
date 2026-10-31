@@ -12,32 +12,50 @@ import React, { useCallback, useEffect, useState } from "react";
 
 import MallikarjunaPhoto from "../assets/team-photos/Mallikarjuna.png";
 import SEOHead from "../components/SEOHead";
-import ourJourneyImage2013May from "/src/assets/our-journey/2013_may.jpg";
-import ourJourneyImage2014July from "/src/assets/our-journey/2014_july.jpg";
-import ourJourneyImage2015August from "/src/assets/our-journey/2015_august.jpg";
-import ourJourneyImage2016July from "/src/assets/our-journey/2016_july.jpg";
-import ourJourneyImage2017January from "/src/assets/our-journey/2017_january.jpg";
-import ourJourneyImage2018April from "/src/assets/our-journey/2018_april.jpg";
-import ourJourneyImage2019May from "/src/assets/our-journey/2019_may.jpg";
-import ourJourneyImage2020July from "/src/assets/our-journey/2020_july.jpg";
-import ourJourneyImage2021February from "/src/assets/our-journey/2021_february.jpg";
-import ourJourneyImage2022May from "/src/assets/our-journey/2022_may.jpg";
-import ourJourneyImage2023June from "/src/assets/our-journey/2023_june.jpg";
-import ourJourneyImage2024September from "/src/assets/our-journey/2024_september.jpg";
-import ourJourneyImage2025October from "/src/assets/our-journey/2025_october.jpg";
-import ourJourneyImage2026February from "/src/assets/our-journey/2026_february.png";
+import journeyMounikaFeeImage from "/src/assets/our-journey/mounika-fee-support-2025-december.jpeg";
+import journeySameeraFeeSupportImage from "/src/assets/our-journey/shaik-sameera-fee-support-2026-august.jpg";
+import journeyInceptionImage from "/src/assets/our-journey/inception-of-rainbow-shiksha-2013-may.jpg";
+import journeyVivekanandaBooksImage from "/src/assets/our-journey/vivekananda-book-distribution-2014-july.jpg";
+import journeyStudentsEducationImage from "/src/assets/our-journey/supporting-students-education-2015-august.jpg";
+import journeyBlindStudents2016Image from "/src/assets/our-journey/helping-blind-students-2016-july.jpg";
+import journeyStationeryImage from "/src/assets/our-journey/stationery-distribution-2017-january.jpg";
+import journeyFestiveImage from "/src/assets/our-journey/festive-celebrations-2018-april.jpg";
+import journeyMotivatingImage from "/src/assets/our-journey/motivating-govt-school-students-2019-may.jpg";
+import journeyChildrensDayImage from "/src/assets/our-journey/childrens-day-celebration-2020-july.jpg";
+import journeyLouisBrailleImage from "/src/assets/our-journey/louis-braille-day-support-2021-february.jpg";
+import journeyGamesAwarenessImage from "/src/assets/our-journey/games-and-education-awareness-2022-may.jpg";
+import journeyTechnologyForSchoolsImage from "/src/assets/our-journey/technology-for-schools-2023-june.jpg";
+import journeyBlindStudents2024Image from "/src/assets/our-journey/support-for-blind-students-2024-september.jpg";
+import journeyRegistrationImage from "/src/assets/our-journey/official-registration-2025-october.jpg";
+import journeyBagDonationImage from "/src/assets/our-journey/bag-donation-for-school-children-2026-february.png";
 
 const OurStory: React.FC = () => {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   const timeline = [
     {
+      year: "August 2026",
+      title: "Supporting Shaik Sameera's Nursing Education",
+      description:
+        "Covered the tuition fees of Shaik Sameera, who is pursuing B.Sc. Nursing at Bollineni College of Nursing, Nellore, with the dream of serving her community.",
+      icon: Heart,
+      image: journeySameeraFeeSupportImage,
+    },
+    {
       year: "February 2026",
       title: "Bag Donation for School Children",
       description:
         "Donated school bags to children in Guntur in collaboration with KBR Foundation.",
       icon: BookOpen,
-      image: ourJourneyImage2026February,
+      image: journeyBagDonationImage,
+    },
+    {
+      year: "December 2025",
+      title: "Supporting Mounika's 10th Class Education",
+      description:
+        "After covering K. Mounika's 9th-grade fees, we are now funding her Class 10 (SSC) education in Adoni, Kurnool, and intend to support her future studies.",
+      icon: BookOpen,
+      image: journeyMounikaFeeImage,
     },
     {
       year: "October 2025",
@@ -45,7 +63,7 @@ const OurStory: React.FC = () => {
       description:
         "Rainbow Shiksha was officially registered to scale and create a bigger impact.",
       icon: Users,
-      image: ourJourneyImage2025October,
+      image: journeyRegistrationImage,
     },
     {
       year: "September 2024",
@@ -53,7 +71,7 @@ const OurStory: React.FC = () => {
       description:
         "Personally visited colleges to pay fees for blind students and helped retrieve their certificates from management.",
       icon: Heart,
-      image: ourJourneyImage2024September,
+      image: journeyBlindStudents2024Image,
     },
     {
       year: "June 2023",
@@ -61,7 +79,7 @@ const OurStory: React.FC = () => {
       description:
         "Donated 3 new computers and 2 laptops to an aided school in Karnataka.",
       icon: Award,
-      image: ourJourneyImage2023June,
+      image: journeyTechnologyForSchoolsImage,
     },
     {
       year: "May 2022",
@@ -69,7 +87,7 @@ const OurStory: React.FC = () => {
       description:
         "Conducted games and explained the importance of education to children at Mother Theresa Orphanage, Hyderabad.",
       icon: Users,
-      image: ourJourneyImage2022May,
+      image: journeyGamesAwarenessImage,
     },
     {
       year: "February 2021",
@@ -77,7 +95,7 @@ const OurStory: React.FC = () => {
       description:
         "Arranged food for blind students on the occasion of Louis Braille’s birthday anniversary.",
       icon: Heart,
-      image: ourJourneyImage2021February,
+      image: journeyLouisBrailleImage,
     },
     {
       year: "July 2020",
@@ -85,7 +103,7 @@ const OurStory: React.FC = () => {
       description:
         "Celebrated Children’s Day in an orphanage located in Siddaganga (Tumkur).",
       icon: Calendar,
-      image: ourJourneyImage2020July,
+      image: journeyChildrensDayImage,
     },
     {
       year: "May 2019",
@@ -93,7 +111,7 @@ const OurStory: React.FC = () => {
       description:
         "Conducted General Knowledge exams and distributed gifts in government schools.",
       icon: Award,
-      image: ourJourneyImage2019May,
+      image: journeyMotivatingImage,
     },
     {
       year: "April 2018",
@@ -101,7 +119,7 @@ const OurStory: React.FC = () => {
       description:
         "Celebrated Diwali and Holi festivals in different orphanages in Hyderabad.",
       icon: Users,
-      image: ourJourneyImage2018April,
+      image: journeyFestiveImage,
     },
     {
       year: "January 2017",
@@ -109,7 +127,7 @@ const OurStory: React.FC = () => {
       description:
         "Distributed stationery in Hyderabad, Kurnool, and Bangalore to encourage students before their annual exams.",
       icon: BookOpen,
-      image: ourJourneyImage2017January,
+      image: journeyStationeryImage,
     },
     {
       year: "July 2016",
@@ -117,7 +135,7 @@ const OurStory: React.FC = () => {
       description:
         "Paid college exam fee and competitive exam fee for blind students.",
       icon: Calendar,
-      image: ourJourneyImage2016July,
+      image: journeyBlindStudents2016Image,
     },
     {
       year: "August 2015",
@@ -125,7 +143,7 @@ const OurStory: React.FC = () => {
       description:
         "Paid one year school fee for Kiran (8th Class, GSNR Kurnool) & Shirisha (10th Class, Hyderabad).",
       icon: Award,
-      image: ourJourneyImage2015August,
+      image: journeyStudentsEducationImage,
     },
     {
       year: "July 2014",
@@ -133,7 +151,7 @@ const OurStory: React.FC = () => {
       description:
         "Distributed Vivekananda books on the occasion of Vivekananda’s 150th Anniversary.",
       icon: BookOpen,
-      image: ourJourneyImage2014July,
+      image: journeyVivekanandaBooksImage,
     },
     {
       year: "May 2013",
@@ -141,7 +159,7 @@ const OurStory: React.FC = () => {
       description:
         "Rainbow Shiksha was started with the inspiration of Saanthwana Group.",
       icon: Users,
-      image: ourJourneyImage2013May,
+      image: journeyInceptionImage,
     },
   ];
 

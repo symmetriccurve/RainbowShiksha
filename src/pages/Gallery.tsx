@@ -14,6 +14,8 @@ const images = import.meta.glob("../assets/gallery/*/*.{png,jpg,jpeg,webp,svg}",
 // Folders without an entry get a title generated from the folder name.
 const titleOverrides: Record<string, string> = {
   "bag-donation-kbr": "Bag Donation – KBR",
+  "shaik-sameera-fee-support": "Shaik Sameera – Fee Support",
+  "mounika-fee-support": "K. Mounika – Fee Support",
   "madhava-school-website": "Madhava School Website Launch in the News",
 };
 

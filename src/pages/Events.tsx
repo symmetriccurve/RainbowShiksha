@@ -106,18 +106,6 @@ const Events: React.FC = () => {
         "Successfully developed and launched a professional website for SMVM School",
     },
     {
-      id: 10,
-      title: "School Fee Support for K. Mounika – Class 10",
-      date: "July 1, 2026",
-      location: "Roots Kiddy's Global School, Adoni Mandal, Kurnool District",
-      type: "support",
-      description:
-        "Paid ₹20,000 towards the 1st Term school fee for student K. Mounika, who is studying in Class 10 at Roots Kiddy's Global School, Adoni Mandal, Kurnool District. We are happy to have supported K. Mounika by paying her Term 1 fee, helping her continue her journey towards a brighter tomorrow.",
-      image: KMounikaSchoolFeeImage,
-      attendees: 1,
-      outcome: "Paid ₹20,000 school fee for K. Mounika's Class 10, 1st Term",
-    },
-    {
       id: 9,
       title: "Tuition Fee Support for Shaik Sameera – B.Sc. Nursing",
       date: "February 12, 2026",
@@ -129,6 +117,18 @@ const Events: React.FC = () => {
       attendees: 1,
       outcome:
         "Paid ₹20,000 tuition fee for Shaik Sameera's B.Sc. Nursing 1st Year, 2nd Term",
+    },
+    {
+      id: 10,
+      title: "School Fee Support for K. Mounika – Class 10",
+      date: "December 2025",
+      location: "Roots Kiddy's Global School, Adoni Mandal, Kurnool District",
+      type: "support",
+      description:
+        "Paid ₹20,000 towards the 1st Term school fee for student K. Mounika, who is studying in Class 10 at Roots Kiddy's Global School, Adoni Mandal, Kurnool District. We are happy to have supported K. Mounika by paying her Term 1 fee, helping her continue her journey towards a brighter tomorrow.",
+      image: KMounikaSchoolFeeImage,
+      attendees: 1,
+      outcome: "Paid ₹20,000 school fee for K. Mounika's Class 10, 1st Term",
     },
     {
       id: 1,
