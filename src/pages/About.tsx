@@ -95,14 +95,14 @@ const About: React.FC = () => {
       role: "Joint Secretary",
       bio: "Collaborative leader working closely with the General Secretary to ensure organizational efficiency and effectiveness.",
       image: MohanPhoto,
-      linkedin: "#",
+      linkedin: "https://www.linkedin.com/in/tirumala-munimohan-731318a7/",
     },
     {
       name: "Vinay Kumar",
       role: "Board Member",
       bio: "Strategic advisor contributing valuable insights and guidance to Rainbow Shiksha's mission and growth.",
       image: VinayPhoto,
-      linkedin: "#",
+      linkedin: "https://www.linkedin.com/in/vinay-kumar-rajamanikyam-b1297653/",
     },
     {
       name: "Vivek",
