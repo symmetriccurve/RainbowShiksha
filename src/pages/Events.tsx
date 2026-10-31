@@ -1,16 +1,17 @@
 import { Calendar, Clock, Filter, MapPin, Users, X } from "lucide-react";
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 // Import past event images
 import ChildrensDayImage from "../assets/past-events/childrens day.png";
 import DictionaryDistributionImage from "../assets/past-events/10th Class dictionary distribution.jpeg";
 import DivyaJyothiEventImage from "../assets/past-events/Divya Jyothi Event.jpeg";
 import ExamKitEventImage from "../assets/past-events/ExamKit Event.jpeg";
+import MadhavaAppreciationLetterImage from "../assets/past-events/madhava-school-site-appreciation-letter.jpeg";
 import KMounikaSchoolFeeImage from "../assets/past-events/K Mounika School Fee.jpg";
 import LaptopDistributionImage from "../assets/past-events/laptop distribution event.jpeg";
 import OrphanageImage from "../assets/past-events/orphanage.png";
 import SEOHead from "../components/SEOHead";
-import SMVMWebsiteLaunchImage from "../assets/past-events/SMVM Website Launch.jpeg";
 import ScribeEventImage from "../assets/past-events/Scribe Event.jpeg";
 import ShaikSameeraFeeImage from "../assets/past-events/Shaik Sameera Fee Payment.jpg";
 import StationaryEventImage from "../assets/past-events/stationary event.jpeg";
@@ -52,17 +53,40 @@ const Events: React.FC = () => {
       price: "Free registration",
     },
     {
-      id: 4,
-      title: "Sri Madhava School Website Development",
-      date: "Ongoing Project",
-      time: "Remote collaboration",
-      location: "Online",
+      id: 5,
+      title: "Fee Support for Shaik Sameera – B.Sc. Nursing (2nd Year) 2026",
+      date: "Academic Year 2026-27",
+      time: "Donations open",
+      location: "Bollineni College of Nursing, Nellore",
       type: "support",
       description:
-        "At the special request of Sri Madhava School management, our skilled IT team is diligently working on creating a professional, user-friendly website. This digital platform will provide parents, students, and visitors with convenient access to all essential school information, enhancing communication and engagement within the educational community.",
-      image:
-        "https://images.pexels.com/photos/8923194/pexels-photo-8923194.jpeg?auto=compress&cs=tinysrgb&w=400",
-      attendees: 5,
+        "Sheikh Sameera is a second-year B.Sc. Nursing student who successfully completed her first year with the support of Rainbow Shiksha, which provided ₹20,000 toward her education. For her second year, we have already contributed ₹25,000 toward her first-term fees. While her total educational expense is ₹1,00,000 (including ₹50,000 for tuition and ₹50,000 for hostel fees), our organization has committed to covering her ₹50,000 tuition fee. We are currently seeking donor support to fulfill this commitment and help Sameera continue her nursing studies. Any contribution toward her education would be deeply appreciated. Thank you for your support.",
+      attendees: 1,
+      price: "Donor support needed",
+    },
+    {
+      id: 6,
+      title: "Fee Support for Mounika – Class 10 (SSC) 2026",
+      date: "Academic Year 2026-27",
+      time: "Donations open",
+      location: "Adoni, Kurnool",
+      type: "support",
+      description:
+        "Supported by Rainbow Shiksha since last year, Mounika is studying in Class 10 (SSC) in Adoni, Kurnool district. Having covered her 9th-grade fees, we are now funding her 10th-grade education and intend to support her future studies based on her academic performance. Thank you.",
+      attendees: 1,
+      price: "Donor support needed",
+    },
+    {
+      id: 7,
+      title: "Vignana Peetham Digital Initiative – 50th Anniversary",
+      date: "To be announced",
+      time: "To be announced",
+      location: "Vignana Peetham, Kurnool",
+      type: "support",
+      description:
+        "As part of Rainbow Shiksha's Digital Initiative program, we are proud to support Vignana Peetham, an educational institution inspired by Dharma & Seva, as it celebrates its 50th anniversary. Our IT team will build a digital presence for the institution, helping it connect with students, parents, alumni, and well-wishers.",
+      attendees: 10,
+      price: "Digital Initiative",
     },
   ];
 
@@ -75,7 +99,8 @@ const Events: React.FC = () => {
       type: "support",
       description:
         "As part of Rainbow Shiksha's Digital Initiative program, our skilled IT team developed a professional website for Sri Madhava Vidya Mandira School and successfully launched it on 1st August 2026. This digital platform provides parents, students, and visitors with convenient access to all essential school information, enhancing communication and engagement within the educational community.",
-      image: SMVMWebsiteLaunchImage,
+      galleryFolder: "madhava-school-website",
+      image: MadhavaAppreciationLetterImage,
       attendees: 10,
       outcome:
         "Successfully developed and launched a professional website for SMVM School",
@@ -127,6 +152,7 @@ const Events: React.FC = () => {
       type: "program",
       description:
         "Our team conducted an engaging games and activities program for children at an orphanage in Lingampally, Hyderabad. Through interactive games, storytelling sessions, and creative workshops, we fostered teamwork, creativity, and joy among the children while providing them with memorable experiences.",
+      galleryFolder: "interactive-games-activities-2024",
       image: OrphanageImage,
       attendees: 52,
       outcome: "Organized interactive games and activities for 52 children",
@@ -445,6 +471,15 @@ const Events: React.FC = () => {
                       {event.outcome}
                     </p>
                   </div>
+
+                  {"galleryFolder" in event && event.galleryFolder && (
+                    <Link
+                      to={`/gallery?event=${event.galleryFolder}`}
+                      className="mt-4 inline-flex w-full items-center justify-center rounded-lg border border-blue-600 px-4 py-2 text-sm font-semibold text-blue-600 hover:bg-blue-50 transition-colors"
+                    >
+                      View Gallery
+                    </Link>
+                  )}
                 </div>
               </div>
             ))}

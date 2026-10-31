@@ -9,11 +9,12 @@ import {
   Users,
 } from "lucide-react";
 import React, { useState } from "react";
-import SEOHead from "../components/SEOHead";
 
 import IndraReddyPhoto from "/src/assets/impact/Indra Reddy.jpeg";
 import RagavendraPhoto from "/src/assets/impact/Ragavendra.png";
 import RamuluPhoto from "/src/assets/impact/Ramulu.jpeg";
+import SEOHead from "../components/SEOHead";
+
 // import ourJouneryImage11 from "/src/assets/our-journey/image11.jpg";
 
 const Impact: React.FC = () => {
@@ -132,7 +133,7 @@ const Impact: React.FC = () => {
   const testimonials = [
     {
       type: "Partner School",
-      name: "Sangama",
+      name: "Sangama Mataji",
       relation: "Headmaster, Sri Madhava Vidya Mandira",
       quote:
         "Your Organization donated 3 Computers and 2 Laptops to our school SRI MADHAVA VIDYA MANDIRA for the 2024–25 academic year. It is helpful for the learning of the children. It is a matter of pride that RAINBOW SHIKSHA ASSOCIATION is providing such social service. The Management Board, Staff and children of SRI MADHAVA VIDYA MANDIRA pray that God's grace will always be upon you for your selfless service.",
@@ -140,11 +141,11 @@ const Impact: React.FC = () => {
     },
     {
       type: "Community Leader",
-      name: "Sarpanch Kamala Joshi",
-      relation: "Village Head",
+      name: "Kodavatikanti Balaraju",
+      relation: "KBR Foundation Head",
       quote:
-        "Rainbow Shiksha hasn't just helped individual children - they've changed our entire community's perspective on education. Parents now prioritize their children's schooling.",
-      location: "Gujarat",
+        "Running a charitable trust is noble work, and managing the finances to keep everything afloat can certainly be a tough mountain to climb. It’s wonderful to hear that the Rainbow Shiksha Charitable Trust stepped up to support your kids with brand-new school bags! Small acts of community support like that make a huge difference in easing operational pressures. Keep up the great work with your trust!",
+      location: "Guntur, Andhra Pradesh",
     },
   ];
 

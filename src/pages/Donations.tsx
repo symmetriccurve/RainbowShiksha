@@ -1,11 +1,13 @@
 import { Building2, Check, Copy, Heart, Shield, Star } from "lucide-react";
 // DonationsWithQR.tsx
 import { useEffect, useRef, useState } from "react";
-import SEOHead from "../components/SEOHead";
 
-import QRCode from "qrcode";
 import LaxmiDurgaImage from "../assets/Donations/Laxmi Durga.jpeg";
+import MounikaaImage from "../assets/Donations/Mounikaa.jpeg";
+import QRCode from "qrcode";
 import RamuluImage from "../assets/Donations/Ramulu.png";
+import SEOHead from "../components/SEOHead";
+import ShaikSameeraImage from "../assets/Donations/Shaik-Sameera.jpeg";
 
 /* Legacy preset amounts retained for future interactive flows
 const presetAmounts = [
@@ -45,15 +47,23 @@ const testimonials = [
   },
 ];
 
-const sponsorshipOptions = [
- 
+type SponsorshipOption = {
+  name: string;
+  age?: number;
+  grade: string;
+  school: string;
+  story: string;
+  image?: string;
+};
+
+const sponsorshipOptions: SponsorshipOption[] = [
   {
     name: "P. Laxmi Durga",
     age: 20,
     grade: "BTech",
     school: "Machilipatnam, Andhra Pradesh",
     story:
-      "Pursuing BTech with determination and dreams of making a difference in the tech world. Committed to using education to create opportunities for others.",
+      "From high school success to cutting-edge tech! Lakshmi Durga, a former Rainbow Shiksha student who completed her intermediate education with our support, is now pursuing her B.Tech degree. She didn't stop there.she’s also taken on a specialized dual (mini) degree in Quantum Computing! Rainbow Shiksha is thrilled to continue backing her journey by covering her tuition and exam fees. Let's root for her bright future!",
     image: LaxmiDurgaImage,
   },
   {
@@ -65,14 +75,79 @@ const sponsorshipOptions = [
       "Studying B.Ed to become an educator and inspire the next generation. Passionate about teaching and making quality education accessible to all children.",
     image: RamuluImage,
   },
+  {
+    name: "Shaik Sameera",
+    grade: "B.Sc. Nursing",
+    school: "Bollineni College of Nursing, Nellore",
+    story:
+      "Pursuing B.Sc. Nursing with the dream of serving her community. Rainbow Shiksha has supported her tuition fees, and she needs continued support to complete her course.",
+    image: ShaikSameeraImage,
+  },
+  {
+    name: "K.Mounika",
+    grade: "Class 10 (SSC)",
+    school: "Adoni, Kurnool",
+    story:
+      "Mounika is studying in Class 10 (SSC) in Adoni, Kurnool district. Having covered her 9th-grade fees, we are now funding her 10th-grade education and intend to support her future studies based on her academic performance.",
+    image: MounikaaImage,
+  },
 ];
+
+function ExpandableStory({ text }: { text: string }) {
+  const [expanded, setExpanded] = useState(false);
+  const [overflowing, setOverflowing] = useState(false);
+  const ref = useRef<HTMLParagraphElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const check = () => {
+      if (!expanded) setOverflowing(el.scrollHeight > el.clientHeight + 1);
+    };
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, [text, expanded]);
+
+  return (
+    <div className="mb-4">
+      <p
+        ref={ref}
+        className="text-gray-700 text-sm leading-5"
+        style={
+          expanded
+            ? undefined
+            : {
+                display: "-webkit-box",
+                WebkitBoxOrient: "vertical",
+                WebkitLineClamp: 4,
+                overflow: "hidden",
+                height: "5rem",
+              }
+        }
+      >
+        {text}
+      </p>
+      {(overflowing || expanded) && (
+        <button
+          type="button"
+          onClick={() => setExpanded((v) => !v)}
+          className="mt-1 text-xs text-blue-600 hover:underline"
+        >
+          {expanded ? "Show less" : "Load more"}
+        </button>
+      )}
+    </div>
+  );
+}
 
 const ORG_NAME = "Rainbow Shiksha";
 const ORG_FULL_NAME = "RAINBOW SHIKSHA EDUCATION DEVELOPMENT TRUST";
 const UPI_VPA = "RAINBOWSHIKSHAEDUCATIONDEVELOPMENTTRUST@iob"; // <— your UPI ID
 
 // Query string for deep links (without upi://pay? prefix)
-const EXACT_UPI_QUERY = "ver=01&pa=RAINBOWSHIKSHAEDUCATIONDEVELOPMENTTRUST@iob&pn=RAINBOW SHIKSHA EDUCATION DEVELOPMENT TRUST&tn=%20&am=&mode=00&purpose=00&orgid=159020&sign=&mc=6012";
+const EXACT_UPI_QUERY =
+  "ver=01&pa=RAINBOWSHIKSHAEDUCATIONDEVELOPMENTTRUST@iob&pn=RAINBOW SHIKSHA EDUCATION DEVELOPMENT TRUST&tn=%20&am=&mode=00&purpose=00&orgid=159020&sign=&mc=6012";
 
 // Exact UPI URL string for QR code generation
 const EXACT_UPI_URL = `upi://pay?${EXACT_UPI_QUERY}`;
@@ -227,7 +302,6 @@ export default function DonationsWithQR() {
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
                 Donate via UPI
               </h2>
-             
             </div>
 
             <div className="flex flex-col items-center gap-5">
@@ -633,7 +707,7 @@ export default function DonationsWithQR() {
             <div className="flex items-center justify-center mb-6">
               <Building2 className="h-12 w-12 text-blue-600" />
             </div>
-            
+
             <div className="space-y-4">
               <div className="bg-white rounded-xl p-6 shadow-md">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -647,7 +721,9 @@ export default function DonationsWithQR() {
                       </p>
                       <button
                         onClick={() => {
-                          navigator.clipboard.writeText("Rainbow Shiksha Education Development Trust");
+                          navigator.clipboard.writeText(
+                            "Rainbow Shiksha Education Development Trust",
+                          );
                           alert("Account name copied to clipboard!");
                         }}
                         className="ml-2 p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -731,7 +807,9 @@ export default function DonationsWithQR() {
 
               <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg">
                 <p className="text-sm text-blue-800">
-                  <strong>Note:</strong> After making a bank transfer, please share the transaction details via WhatsApp or email for our records and to receive your donation receipt.
+                  <strong>Note:</strong> After making a bank transfer, please
+                  share the transaction details via WhatsApp or email for our
+                  records and to receive your donation receipt.
                 </p>
               </div>
             </div>
@@ -744,7 +822,7 @@ export default function DonationsWithQR() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Sponsor a Child
+              Sponsor a Student
             </h2>
             <p className="text-xl text-gray-600">
               Create a personal connection and transform a life
@@ -758,52 +836,65 @@ export default function DonationsWithQR() {
                 className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col"
               >
                 <div className="w-full h-72 bg-gray-100 flex items-center justify-center">
-                  <img
-                    src={child.image}
-                    alt={child.name}
-                    className="w-full h-full object-contain"
-                  />
+                  {child.image ? (
+                    <img
+                      src={child.image}
+                      alt={child.name}
+                      className="w-full h-full object-contain"
+                    />
+                  ) : (
+                    <span className="text-6xl font-bold text-blue-300">
+                      {child.name
+                        .split(" ")
+                        .map((w) => w[0])
+                        .join("")}
+                    </span>
+                  )}
                 </div>
-                <div className="p-6">
+                <div className="p-6 flex flex-col flex-1">
                   <h3 className="text-xl font-semibold text-gray-900 mb-1">
                     {child.name}
                   </h3>
                   <div className="text-blue-600 font-medium mb-2">
-                    {child.age} years • {child.grade}
+                    {child.age ? `${child.age} years • ` : ""}
+                    {child.grade}
                   </div>
-                  <div className="text-sm text-gray-600 mb-3">
+                  <div className="text-sm text-gray-600 mb-3 min-h-[2.5rem]">
                     {child.school}
                   </div>
-                  <p className="text-gray-700 text-sm mb-4">{child.story}</p>
+                  <ExpandableStory text={child.story} />
 
-                  <div className="border-t pt-4">
-                    <button 
+                  <div className="border-t pt-4 mt-auto">
+                    <button
                       onClick={() => {
                         const whatsappNumber = "919700400237";
                         const message = encodeURIComponent(
                           `🌟 *Child Sponsorship Inquiry* 🌟\n\n` +
-                          `Hello Rainbow Shiksha Team,\n\n` +
-                          `I am interested in sponsoring a child through your organization. Here are the details:\n\n` +
-                          `👤 *Child Details:*\n` +
-                          `• Name: ${child.name}\n` +
-                          `• Age: ${child.age} years\n` +
-                          `• Grade: ${child.grade}\n` +
-                          `• School: ${child.school}\n\n` +
-                          `📝 *Child's Story:*\n${child.story}\n\n` +
-                          `I would like to:\n` +
-                          `• Start monthly sponsorship for ${child.name}\n` +
-                          `• Learn more about the sponsorship process\n` +
-                          `• Understand how I can track the child's progress\n` +
-                          `• Know about tax benefits (80G certificate)\n\n` +
-                          `Please provide me with:\n` +
-                          `• Payment options and process\n` +
-                          `• Regular updates about the child\n` +
-                          `• Contact details for any queries\n\n` +
-                          `Thank you for the amazing work you're doing! 🙏\n\n` +
-                          `Best regards,\n` +
-                          `[Your Name]`
+                            `Hello Rainbow Shiksha Team,\n\n` +
+                            `I am interested in sponsoring a child through your organization. Here are the details:\n\n` +
+                            `👤 *Child Details:*\n` +
+                            `• Name: ${child.name}\n` +
+                            (child.age ? `• Age: ${child.age} years\n` : "") +
+                            `• Grade: ${child.grade}\n` +
+                            `• School: ${child.school}\n\n` +
+                            `📝 *Child's Story:*\n${child.story}\n\n` +
+                            `I would like to:\n` +
+                            `• Start monthly sponsorship for ${child.name}\n` +
+                            `• Learn more about the sponsorship process\n` +
+                            `• Understand how I can track the child's progress\n` +
+                            `• Know about tax benefits (80G certificate)\n\n` +
+                            `Please provide me with:\n` +
+                            `• Payment options and process\n` +
+                            `• Regular updates about the child\n` +
+                            `• Contact details for any queries\n\n` +
+                            `Thank you for the amazing work you're doing! 🙏\n\n` +
+                            `Best regards,\n` +
+                            `[Your Name]`,
                         );
-                        window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
+                        window.open(
+                          `https://wa.me/${whatsappNumber}?text=${message}`,
+                          "_blank",
+                        );
                       }}
                       className="w-full bg-gradient-to-r from-blue-600 to-green-600 text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-200 transform hover:scale-105"
                     >

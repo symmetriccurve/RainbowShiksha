@@ -1,62 +1,99 @@
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import SEOHead from "../components/SEOHead";
 
-import bagDonationKbr from "../assets/gallery/bag_donation_kbr.png";
-import bagDonationKbr2 from "../assets/gallery/bag_donation_kbr_2.png";
-
-const images = import.meta.glob("/src/assets/uploads/**/*.{png,jpg,jpeg,svg}", {
+// Every sub-folder of src/assets/gallery is its own event section.
+// Drop a new folder of photos in there and it shows up automatically.
+const images = import.meta.glob("../assets/gallery/*/*.{png,jpg,jpeg,webp,svg}", {
   eager: true,
   as: "url",
-});
+}) as Record<string, string>;
 
-// Self-contained Gallery: no props, HTML buttons only, no TS primitive annotations
+// Optional display-name overrides, keyed by folder name.
+// Folders without an entry get a title generated from the folder name.
+const titleOverrides: Record<string, string> = {
+  "bag-donation-kbr": "Bag Donation – KBR",
+  "madhava-school-website": "Madhava School Website Launch in the News",
+};
+
+type EventSection = {
+  slug: string;
+  title: string;
+  photos: string[];
+};
+
+const prettify = (slug: string) =>
+  slug
+    .split(/[-_]+/)
+    .filter(Boolean)
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(" ");
+
+const buildSections = (): EventSection[] => {
+  const bySlug: Record<string, { path: string; url: string }[]> = {};
+  for (const [path, url] of Object.entries(images)) {
+    const slug = path.split("/").slice(-2, -1)[0];
+    (bySlug[slug] ||= []).push({ path, url });
+  }
+  return Object.entries(bySlug)
+    .map(([slug, files]) => ({
+      slug,
+      title: titleOverrides[slug] ?? prettify(slug),
+      photos: files
+        .sort((a, b) =>
+          a.path.localeCompare(b.path, undefined, { numeric: true }),
+        )
+        .map((f) => f.url),
+    }))
+    .sort((a, b) => a.title.localeCompare(b.title));
+};
+
 const Gallery = () => {
-  const [index, setIndex] = useState<number | null>(null); // active photo index or null
-  const urls = [...Object.values(images), bagDonationKbr2, bagDonationKbr];
-  //   return (
-  //     <>
-  //       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-  //         {urls.map((src, i) => (
-  //           <img
-  //             key={i}
-  //             src={src}
-  //             alt={`Event ${i + 1}`}
-  //             className="rounded-lg shadow-md"
-  //           />
-  //         ))}
-  //       </div>
-  //     </>
-  //   );
-
-  // Use actual uploaded images for lightbox
-  const sorted = urls;
-
-  const open = useCallback((i: number) => setIndex(i), []);
-  const close = useCallback(() => setIndex(null), []);
-  const next = useCallback(
-    () => setIndex((i) => (i === null ? i : (i + 1) % sorted.length)),
-    [sorted.length],
+  const sections = useMemo(buildSections, []);
+  // Lightbox is scoped to one event: which section, and which photo in it
+  const [viewer, setViewer] = useState<{ slug: string; index: number } | null>(
+    null,
   );
-  const prev = useCallback(
-    () =>
-      setIndex((i) =>
-        i === null ? i : (i - 1 + sorted.length) % sorted.length,
+  const [searchParams] = useSearchParams();
+  const targetEvent = searchParams.get("event");
+  const [touchX, setTouchX] = useState<number | null>(null);
+
+  const photos = sections.find((s) => s.slug === viewer?.slug);
+  const count = photos?.photos.length ?? 0;
+
+  const close = useCallback(() => setViewer(null), []);
+  const step = useCallback(
+    (d: number) =>
+      setViewer((v) =>
+        v && count ? { ...v, index: (v.index + d + count) % count } : v,
       ),
-    [sorted.length],
+    [count],
   );
 
-  // Keyboard navigation in lightbox
+  // Deep link: /gallery?event=<folder> scrolls to that event's section
   useEffect(() => {
+    if (!targetEvent) return;
+    document
+      .getElementById(`event-${targetEvent}`)
+      ?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, [targetEvent]);
+
+  useEffect(() => {
+    if (!viewer) return;
     const onKey = (e: KeyboardEvent) => {
-      if (index === null) return;
       if (e.key === "Escape") close();
-      if (e.key === "ArrowRight") next();
-      if (e.key === "ArrowLeft") prev();
+      if (e.key === "ArrowRight") step(1);
+      if (e.key === "ArrowLeft") step(-1);
     };
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
     window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [index, close, next, prev]);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [viewer, close, step]);
 
   return (
     <>
@@ -66,104 +103,127 @@ const Gallery = () => {
         path="#/gallery"
       />
       <section
-      className="bg-white py-12 sm:py-16"
-      aria-label="Event photo gallery"
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <header className="text-center mb-8 sm:mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
-            Event Gallery
-          </h2>
-          <p className="text-lg md:text-xl text-gray-600">
-            Moments from our events and programs
-          </p>
-        </header>
+        className="bg-white py-10 sm:py-16"
+        aria-label="Event photo gallery"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <header className="text-center mb-8 sm:mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
+              Event Gallery
+            </h2>
+            <p className="text-base sm:text-lg md:text-xl text-gray-600">
+              Moments from our events and programs
+            </p>
+          </header>
 
-        {/* Grid */}
-        <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 md:gap-6">
-          {urls.map((src, i) => (
-            <li key={i} className="relative">
-              <button
-                type="button"
-                onClick={() => open(i)}
-                className="group block w-full text-left rounded-xl overflow-hidden shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-black/30 hover:shadow-lg transition-shadow duration-300"
-                aria-label={`Open image ${i + 1}`}
+          {/* One independent section per event folder, all photos shown inline */}
+          <div className="space-y-12 sm:space-y-16">
+            {sections.map((section) => (
+              <section
+                key={section.slug}
+                id={`event-${section.slug}`}
+                aria-labelledby={`event-title-${section.slug}`}
+                className="scroll-mt-24"
               >
-                <div className="relative w-full h-64 md:h-60 lg:h-64 bg-gray-100">
-                  <img
-                    src={src}
-                    alt="Gallery image"
-                    loading="lazy"
-                    decoding="async"
-                    className="absolute inset-0 w-full h-full object-contain transition-opacity duration-300 group-hover:opacity-90"
-                  />
-                </div>
-              </button>
-            </li>
-          ))}
-        </ul>
-
-        {/* Lightbox */}
-        {index !== null && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center">
-            {/* Backdrop */}
-            <button
-              type="button"
-              aria-label="Close backdrop"
-              onClick={close}
-              className="absolute inset-0 bg-black/80"
-            />
-
-            {/* Dialog */}
-            <div className="relative max-w-5xl w-full mx-4">
-              {/* Close */}
-              <button
-                type="button"
-                onClick={close}
-                aria-label="Close"
-                className="absolute top-2 right-2 inline-flex items-center justify-center rounded-full bg-black/60 p-2 text-white shadow focus:outline-none focus-visible:ring-2"
-              >
-                <X className="h-5 w-5" />
-              </button>
-
-              {/* Prev / Next */}
-              {sorted.length > 1 && (
-                <>
-                  <button
-                    type="button"
-                    onClick={prev}
-                    aria-label="Previous"
-                    className="absolute left-2 top-1/2 -translate-y-1/2 inline-flex items-center justify-center rounded-full bg-black/60 p-2 text-white shadow focus:outline-none focus-visible:ring-2"
+                <div className="mb-4 flex items-baseline justify-between gap-3 border-b border-gray-200 pb-2">
+                  <h3
+                    id={`event-title-${section.slug}`}
+                    className="text-xl sm:text-2xl font-bold text-gray-900"
                   >
-                    <ChevronLeft className="h-5 w-5" />
-                  </button>
-                  <button
-                    type="button"
-                    onClick={next}
-                    aria-label="Next"
-                    className="absolute right-2 top-1/2 -translate-y-1/2 inline-flex items-center justify-center rounded-full bg-black/60 p-2 text-white shadow focus:outline-none focus-visible:ring-2"
-                  >
-                    <ChevronRight className="h-5 w-5" />
-                  </button>
-                </>
-              )}
-
-              <img
-                src={sorted[index]}
-                alt="Gallery image"
-                className="w-full max-h-[85vh] object-contain rounded-xl"
-              />
-
-              <div className="mt-3 text-white text-center">
-                <div className="text-xs opacity-90">
-                  Click outside or press Escape to close
+                    {section.title}
+                  </h3>
+                  <span className="shrink-0 text-xs sm:text-sm text-gray-500">
+                    {section.photos.length}{" "}
+                    {section.photos.length === 1 ? "photo" : "photos"}
+                  </span>
                 </div>
-              </div>
-            </div>
+                <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-4">
+                  {section.photos.map((src, i) => (
+                    <li key={src}>
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setViewer({ slug: section.slug, index: i })
+                        }
+                        aria-label={`Open ${section.title} photo ${i + 1} of ${section.photos.length}`}
+                        className="group relative block w-full aspect-square overflow-hidden rounded-lg bg-gray-100 shadow-sm hover:shadow-lg transition-shadow focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+                      >
+                        <img
+                          src={src}
+                          alt={`${section.title} – photo ${i + 1}`}
+                          loading="lazy"
+                          decoding="async"
+                          className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                        />
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            ))}
           </div>
-        )}
-      </div>
-    </section>
+        </div>
+      </section>
+
+      {/* Lightbox, limited to the photos of the section it was opened from */}
+      {viewer && photos && photos.photos[viewer.index] && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/95"
+          role="dialog"
+          aria-modal="true"
+          aria-label={photos.title}
+          onTouchStart={(e) => setTouchX(e.touches[0].clientX)}
+          onTouchEnd={(e) => {
+            if (touchX === null) return;
+            const dx = e.changedTouches[0].clientX - touchX;
+            if (Math.abs(dx) > 50) step(dx < 0 ? 1 : -1);
+            setTouchX(null);
+          }}
+        >
+          <button
+            type="button"
+            aria-label="Close backdrop"
+            onClick={close}
+            className="absolute inset-0 cursor-default"
+          />
+          <button
+            type="button"
+            onClick={close}
+            aria-label="Close"
+            className="absolute right-3 top-3 z-10 inline-flex h-10 w-10 items-center justify-center rounded-full bg-black/60 text-white focus:outline-none focus-visible:ring-2"
+          >
+            <X className="h-5 w-5" />
+          </button>
+          {count > 1 && (
+            <>
+              <button
+                type="button"
+                onClick={() => step(-1)}
+                aria-label="Previous"
+                className="absolute left-2 top-1/2 z-10 inline-flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-black/60 text-white focus:outline-none focus-visible:ring-2"
+              >
+                <ChevronLeft className="h-5 w-5" />
+              </button>
+              <button
+                type="button"
+                onClick={() => step(1)}
+                aria-label="Next"
+                className="absolute right-2 top-1/2 z-10 inline-flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-black/60 text-white focus:outline-none focus-visible:ring-2"
+              >
+                <ChevronRight className="h-5 w-5" />
+              </button>
+            </>
+          )}
+          <img
+            src={photos.photos[viewer.index]}
+            alt={`${photos.title} – photo ${viewer.index + 1}`}
+            className="relative max-h-[85dvh] max-w-full object-contain px-12 sm:px-16"
+          />
+          <div className="pointer-events-none absolute bottom-4 left-0 right-0 px-4 text-center text-sm text-white/80">
+            {photos.title} · {viewer.index + 1} / {count}
+          </div>
+        </div>
+      )}
     </>
   );
 };

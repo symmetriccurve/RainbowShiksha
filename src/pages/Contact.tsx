@@ -1,4 +1,4 @@
-import { Clock, Facebook, Instagram, Linkedin, Mail, MapPin, MessageCircle, Phone, Send, Twitter } from "lucide-react";
+import { Clock, Facebook, HeartHandshake, Instagram, Linkedin, Mail, MapPin, MessageCircle, Phone, Plus, Send, Twitter } from "lucide-react";
 import React, { useState } from "react";
 import SEOHead from "../components/SEOHead";
 
@@ -73,6 +73,23 @@ Submitted via Rainbow Shiksha Website`;
     });
   };
 
+  const handleJoinAsVolunteer = () => {
+    const message = `Hello Rainbow Shiksha team! 🌈
+
+I would like to join as a volunteer.
+
+*Name:*
+*City:*
+*Skills / How I can help:*
+*Availability:*
+
+Please share the next steps. Thank you!`;
+    window.open(
+      `https://wa.me/919959277190?text=${encodeURIComponent(message)}`,
+      "_blank"
+    );
+  };
+
   const contactInfo = [
     {
       icon: Mail,
@@ -111,19 +128,19 @@ Submitted via Rainbow Shiksha Website`;
   ];
 
   return (
-    <div>
+    <div className="flex flex-col">
       <SEOHead
         title="Contact Us"
         description="Get in touch with Rainbow Shiksha. Reach out to volunteer, donate, or learn more about our education programs for underprivileged children across India."
         path="#/contact"
       />
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-50 via-green-50 to-yellow-50 py-20">
+      <section className="order-1 bg-gradient-to-br from-blue-50 via-green-50 to-yellow-50 py-6 md:py-8">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2 md:mb-3">
             Get in Touch
           </h1>
-          <p className="text-xl text-gray-600 leading-relaxed">
+          <p className="text-base md:text-lg text-gray-600 leading-snug">
             We'd love to hear from you. Whether you have questions about our
             programs, want to get involved, or need support, we're here to help.
           </p>
@@ -131,9 +148,9 @@ Submitted via Rainbow Shiksha Website`;
       </section>
 
       {/* Contact Information */}
-      <section className="bg-white py-16">
+      <section className="order-3 md:order-2 bg-white py-8 md:py-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {contactInfo.map((info, index) => {
               const Icon = info.icon;
               return (
@@ -155,8 +172,33 @@ Submitted via Rainbow Shiksha Website`;
         </div>
       </section>
 
+      {/* Join as Volunteer */}
+      <section className="order-2 md:order-3 bg-gradient-to-br from-blue-50 via-green-50 to-yellow-50 py-6 sm:py-10 lg:py-12">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="hidden sm:flex w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-600 to-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+            <HeartHandshake className="h-7 w-7 sm:h-8 sm:w-8 text-white" />
+          </div>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">
+            Become a Volunteer & Help Us Grow
+          </h2>
+          <p className="hidden sm:block text-base sm:text-lg text-gray-700 mb-6 max-w-2xl mx-auto">
+            Every hour you give helps a child learn, dream and grow. Teach, mentor,
+            organize events or lend your skills &mdash; join the Rainbow Shiksha
+            family and help us reach more children.
+          </p>
+          <button
+            type="button"
+            onClick={handleJoinAsVolunteer}
+            className="inline-flex items-center justify-center gap-2 w-full sm:w-auto mt-4 sm:mt-0 bg-gradient-to-r from-blue-600 to-green-600 text-white px-8 py-3 rounded-full font-medium hover:shadow-lg animate-breathe"
+          >
+            Join Us
+            <Plus className="h-5 w-5" />
+          </button>
+        </div>
+      </section>
+
       {/* Contact Form & Info */}
-      <section className="bg-gray-50 py-16">
+      <section className="order-4 bg-gray-50 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Contact Form */}
@@ -378,7 +420,7 @@ Submitted via Rainbow Shiksha Website`;
       </section>
 
       {/* Map Section */}
-      <section className="bg-white py-16">
+      <section className="order-5 bg-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Find Us</h2>

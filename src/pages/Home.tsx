@@ -11,7 +11,7 @@ import {
 import { Link } from "react-router-dom";
 import React from "react";
 import SEOHead from "../components/SEOHead";
-import KiranPhoto from "/src/assets/uploads/2022/09/photos-2022-095.jpg";
+import KiranPhoto from "/src/assets/gallery/book-distribution-2022/photos-2022-095.jpg";
 import RamuluPhoto from "/src/assets/impact/Ramulu.jpeg";
 import IndraReddyPhoto from "/src/assets/impact/Indra Reddy.jpeg";
 
