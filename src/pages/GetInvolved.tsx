@@ -1,6 +1,13 @@
 import React, { useState } from 'react';
-import { Users, Heart, Briefcase, GraduationCap, Calendar, ArrowRight, CheckCircle } from 'lucide-react';
+import { Users, Heart, Briefcase, GraduationCap, ArrowRight, CheckCircle } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
+
+const WHATSAPP_NUMBER = '919700400237';
+
+const openWhatsApp = (lines: string[]) => {
+  const message = encodeURIComponent(lines.join('\n'));
+  window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${message}`, '_blank', 'noopener,noreferrer');
+};
 
 const GetInvolved: React.FC = () => {
   const [selectedOpportunity, setSelectedOpportunity] = useState<string | null>(null);
@@ -11,27 +18,27 @@ const GetInvolved: React.FC = () => {
       title: 'Teaching Volunteer',
       icon: GraduationCap,
       commitment: '4-6 hours/week',
-      location: 'On-site at partner schools',
+      location: 'Onsite/Remote',
       description: 'Support classroom learning by assisting teachers with lessons, activities, and student mentoring.',
       requirements: ['Bachelor\'s degree preferred', 'Good communication skills', 'Passion for education'],
       benefits: ['Direct impact on children\'s learning', 'Teaching experience', 'Regular appreciation events']
     },
     {
-      id: 'events',
-      title: 'Event Coordinator',
-      icon: Calendar,
+      id: 'career',
+      title: 'Career Guidance Advisor',
+      icon: Briefcase,
       commitment: '2-3 hours/week',
-      location: 'Various locations in Mumbai',
-      description: 'Help organize fundraising events, school visits, and awareness campaigns.',
-      requirements: ['Event planning experience', 'Good organizational skills', 'Team player'],
-      benefits: ['Event management experience', 'Networking opportunities', 'Flexible schedule']
+      location: 'Onsite/Remote',
+      description: 'Guide students on career options, higher education choices, and exam preparation based on your professional experience.',
+      requirements: ['Professional experience in any field', 'Good communication skills', 'Willingness to guide students'],
+      benefits: ['Shape students\' career paths', 'Mentoring experience', 'Flexible schedule']
     },
     {
       id: 'mentor',
       title: 'Student Mentor',
       icon: Users,
       commitment: '3-4 hours/week',
-      location: 'Online & On-site',
+      location: 'Onsite/Remote',
       description: 'Provide one-on-one mentoring to students, helping with homework and career guidance.',
       requirements: ['Professional experience', 'Patience and empathy', 'Regular availability'],
       benefits: ['Personal fulfillment', 'Mentoring skills', 'Long-term student relationships']
@@ -41,7 +48,7 @@ const GetInvolved: React.FC = () => {
       title: 'Fundraising Support',
       icon: Heart,
       commitment: '2-4 hours/week',
-      location: 'Remote/Online',
+      location: 'Onsite/Remote',
       description: 'Help with donor outreach, social media campaigns, and fundraising strategy.',
       requirements: ['Communication skills', 'Social media knowledge', 'Creative thinking'],
       benefits: ['Marketing experience', 'Professional development', 'Remote flexibility']
@@ -74,20 +81,10 @@ const GetInvolved: React.FC = () => {
 
   const internshipPrograms = [
     {
-      title: 'Program Development Intern',
-      duration: '3-6 months',
-      location: 'Mumbai Office',
-      description: 'Support the design and implementation of educational programs.',
-      skills: ['Program management', 'Research skills', 'Data analysis'],
-      stipend: 'Paid internship'
-    },
-    {
       title: 'Digital Marketing Intern',
       duration: '3-4 months',
-      location: 'Remote/Hybrid',
       description: 'Assist with social media, content creation, and online fundraising campaigns.',
-      skills: ['Social media marketing', 'Content creation', 'Analytics'],
-      stipend: 'Paid internship'
+      skills: ['Social media marketing', 'Content creation', 'Analytics']
     },
   ];
 
@@ -176,7 +173,27 @@ const GetInvolved: React.FC = () => {
                       </div>
                     )}
 
-                    <button className="w-full bg-gradient-to-r from-blue-600 to-green-600 text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-200 transform hover:scale-105 mt-4">
+                    <button
+                      onClick={() =>
+                        openWhatsApp([
+                          '🌟 *Volunteer Application* 🌟',
+                          '',
+                          'Hello Rainbow Shiksha Team,',
+                          '',
+                          `I would like to apply for the *${opportunity.title}* volunteer role.`,
+                          '',
+                          `• Time Commitment: ${opportunity.commitment}`,
+                          `• Location: ${opportunity.location}`,
+                          '',
+                          'Please share the next steps.',
+                          '',
+                          'Thank you! 🙏',
+                          'Best regards,',
+                          '[Your Name]',
+                        ])
+                      }
+                      className="w-full bg-gradient-to-r from-blue-600 to-green-600 text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-200 transform hover:scale-105 mt-4"
+                    >
                       Apply to Volunteer
                     </button>
                   </div>
@@ -223,7 +240,26 @@ const GetInvolved: React.FC = () => {
                     <strong>Commitment:</strong> {partnership.commitment}
                   </div>
                   
-                  <button className="w-full bg-gradient-to-r from-green-600 to-blue-600 text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-200 transform hover:scale-105">
+                  <button
+                    onClick={() =>
+                      openWhatsApp([
+                        '🤝 *Partnership Inquiry* 🤝',
+                        '',
+                        'Hello Rainbow Shiksha Team,',
+                        '',
+                        `I would like to know more about the *${partnership.title}* partnership.`,
+                        '',
+                        `• Commitment: ${partnership.commitment}`,
+                        '',
+                        'Please share more details.',
+                        '',
+                        'Thank you! 🙏',
+                        'Best regards,',
+                        '[Your Name / Organization]',
+                      ])
+                    }
+                    className="w-full bg-gradient-to-r from-green-600 to-blue-600 text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-200 transform hover:scale-105"
+                  >
                     Learn More
                   </button>
                 </div>
@@ -247,8 +283,6 @@ const GetInvolved: React.FC = () => {
                 <h3 className="text-xl font-semibold text-gray-900 mb-3">{internship.title}</h3>
                 <div className="space-y-2 mb-4 text-sm text-gray-600">
                   <div><strong>Duration:</strong> {internship.duration}</div>
-                  <div><strong>Location:</strong> {internship.location}</div>
-                  <div><strong>Compensation:</strong> {internship.stipend}</div>
                 </div>
                 <p className="text-gray-700 mb-4">{internship.description}</p>
                 
@@ -263,7 +297,26 @@ const GetInvolved: React.FC = () => {
                   </div>
                 </div>
                 
-                <button className="w-full bg-gradient-to-r from-yellow-600 to-orange-600 text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-200 transform hover:scale-105">
+                <button
+                  onClick={() =>
+                    openWhatsApp([
+                      '🎓 *Internship Application* 🎓',
+                      '',
+                      'Hello Rainbow Shiksha Team,',
+                      '',
+                      `I would like to apply for the *${internship.title}* internship.`,
+                      '',
+                      `• Duration: ${internship.duration}`,
+                      '',
+                      'Please share the next steps.',
+                      '',
+                      'Thank you! 🙏',
+                      'Best regards,',
+                      '[Your Name]',
+                    ])
+                  }
+                  className="w-full bg-gradient-to-r from-yellow-600 to-orange-600 text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-200 transform hover:scale-105"
+                >
                   Apply for Internship
                 </button>
               </div>
@@ -305,10 +358,40 @@ const GetInvolved: React.FC = () => {
             brings us closer to our goal of education for all.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-gradient-to-r from-blue-600 to-green-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105">
+            <button
+              onClick={() =>
+                openWhatsApp([
+                  '🌟 *Volunteer Interest* 🌟',
+                  '',
+                  'Hello Rainbow Shiksha Team,',
+                  '',
+                  'I would like to start volunteering with Rainbow Shiksha. Please let me know which opportunities are currently open.',
+                  '',
+                  'Thank you! 🙏',
+                  'Best regards,',
+                  '[Your Name]',
+                ])
+              }
+              className="bg-gradient-to-r from-blue-600 to-green-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105"
+            >
               Start Volunteering Today
             </button>
-            <button className="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-50 transition-all duration-200">
+            <button
+              onClick={() =>
+                openWhatsApp([
+                  '🤝 *Partnership Inquiry* 🤝',
+                  '',
+                  'Hello Rainbow Shiksha Team,',
+                  '',
+                  'I would like to explore partnership opportunities with Rainbow Shiksha (CSR, educational institution, or NGO collaboration).',
+                  '',
+                  'Thank you! 🙏',
+                  'Best regards,',
+                  '[Your Name / Organization]',
+                ])
+              }
+              className="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-50 transition-all duration-200"
+            >
               Explore Partnerships
             </button>
           </div>

@@ -1,6 +1,17 @@
-import { Award, BookOpen, Calendar, Heart, Users, ChevronLeft, ChevronRight, X } from "lucide-react";
-
+import {
+  Award,
+  BookOpen,
+  Calendar,
+  ChevronLeft,
+  ChevronRight,
+  Heart,
+  Users,
+  X,
+} from "lucide-react";
 import React, { useCallback, useEffect, useState } from "react";
+
+import MallikarjunaPhoto from "../assets/team-photos/Mallikarjuna.png";
+import SEOHead from "../components/SEOHead";
 import ourJourneyImage2013May from "/src/assets/our-journey/2013_may.jpg";
 import ourJourneyImage2014July from "/src/assets/our-journey/2014_july.jpg";
 import ourJourneyImage2015August from "/src/assets/our-journey/2015_august.jpg";
@@ -15,8 +26,6 @@ import ourJourneyImage2023June from "/src/assets/our-journey/2023_june.jpg";
 import ourJourneyImage2024September from "/src/assets/our-journey/2024_september.jpg";
 import ourJourneyImage2025October from "/src/assets/our-journey/2025_october.jpg";
 import ourJourneyImage2026February from "/src/assets/our-journey/2026_february.png";
-import MallikarjunaPhoto from "../assets/team-photos/Mallikarjuna.png";
-import SEOHead from "../components/SEOHead";
 
 const OurStory: React.FC = () => {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
@@ -137,18 +146,21 @@ const OurStory: React.FC = () => {
   ];
 
   // Lightbox functions
-  const openLightbox = useCallback((index: number) => setLightboxIndex(index), []);
+  const openLightbox = useCallback(
+    (index: number) => setLightboxIndex(index),
+    [],
+  );
   const closeLightbox = useCallback(() => setLightboxIndex(null), []);
   const nextImage = useCallback(
     () => setLightboxIndex((i) => (i === null ? i : (i + 1) % timeline.length)),
-    [timeline.length]
+    [timeline.length],
   );
   const prevImage = useCallback(
     () =>
       setLightboxIndex((i) =>
-        i === null ? i : (i - 1 + timeline.length) % timeline.length
+        i === null ? i : (i - 1 + timeline.length) % timeline.length,
       ),
-    [timeline.length]
+    [timeline.length],
   );
 
   // Keyboard navigation in lightbox
@@ -213,7 +225,7 @@ const OurStory: React.FC = () => {
             communities we serve.
           </p>
           <a
-            href="https://docs.google.com/presentation/d/1zbiV-5yRj6IZXcVHctDwX1hPTWUeaRNG/edit?slide=id.p2#slide=id.p2"
+            href="https://docs.google.com/presentation/d/1A6OSR53950MZEidwiAPPgdCBP2y8HSuc/edit?usp=sharing&ouid=112403781215233801958&rtpof=true&sd=true"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 via-green-600 to-yellow-600 hover:from-blue-700 hover:via-green-700 hover:to-yellow-700 text-white font-bold rounded-xl transition-all duration-300 shadow-2xl hover:shadow-3xl hover:scale-105 transform"
@@ -377,8 +389,8 @@ const OurStory: React.FC = () => {
             Looking Forward
           </h2>
           <p className="text-xl mb-8 opacity-90 leading-relaxed">
-            Our journey is far from over. With your support, we aim to reach
-            500 children by 2030 and establish Rainbow Shiksha as a model for
+            Our journey is far from over. With your support, we aim to reach 500
+            children by 2030 and establish Rainbow Shiksha as a model for
             educational transformation across India.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
@@ -450,9 +462,12 @@ const OurStory: React.FC = () => {
             />
 
             <div className="mt-3 text-white text-center">
-              <div className="text-sm font-medium">{timeline[lightboxIndex].title}</div>
+              <div className="text-sm font-medium">
+                {timeline[lightboxIndex].title}
+              </div>
               <div className="text-xs opacity-90">
-                {timeline[lightboxIndex].year} • Click outside or press Escape to close
+                {timeline[lightboxIndex].year} • Click outside or press Escape
+                to close
               </div>
             </div>
           </div>
