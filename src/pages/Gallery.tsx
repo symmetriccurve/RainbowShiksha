@@ -1,14 +1,20 @@
-import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, Play, X } from "lucide-react";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import SEOHead from "../components/SEOHead";
 
 // Every sub-folder of src/assets/gallery is its own event section.
 // Drop a new folder of photos in there and it shows up automatically.
-const images = import.meta.glob("../assets/gallery/*/*.{png,jpg,jpeg,webp,svg}", {
-  eager: true,
-  as: "url",
-}) as Record<string, string>;
+// Videos (mp4/webm/mov) in the same folders are shown alongside the photos.
+const images = import.meta.glob(
+  "../assets/gallery/*/*.{png,jpg,jpeg,webp,svg,mp4,webm,mov}",
+  {
+    eager: true,
+    as: "url",
+  },
+) as Record<string, string>;
+
+const isVideoPath = (path: string) => /\.(mp4|webm|mov)$/i.test(path);
 
 // Optional display-name overrides, keyed by folder name.
 // Folders without an entry get a title generated from the folder name.
@@ -19,10 +25,12 @@ const titleOverrides: Record<string, string> = {
   "madhava-school-website": "Madhava School Website Launch in the News",
 };
 
+type MediaItem = { url: string; isVideo: boolean };
+
 type EventSection = {
   slug: string;
   title: string;
-  photos: string[];
+  photos: MediaItem[];
 };
 
 const prettify = (slug: string) =>
@@ -46,9 +54,18 @@ const buildSections = (): EventSection[] => {
         .sort((a, b) =>
           a.path.localeCompare(b.path, undefined, { numeric: true }),
         )
-        .map((f) => f.url),
+        .map((f) => ({ url: f.url, isVideo: isVideoPath(f.path) })),
     }))
     .sort((a, b) => a.title.localeCompare(b.title));
+};
+
+const countLabel = (items: MediaItem[]) => {
+  const videos = items.filter((m) => m.isVideo).length;
+  const photos = items.length - videos;
+  const parts: string[] = [];
+  if (photos) parts.push(`${photos} ${photos === 1 ? "photo" : "photos"}`);
+  if (videos) parts.push(`${videos} ${videos === 1 ? "video" : "videos"}`);
+  return parts.join(" · ");
 };
 
 const Gallery = () => {
@@ -135,28 +152,44 @@ const Gallery = () => {
                     {section.title}
                   </h3>
                   <span className="shrink-0 text-xs sm:text-sm text-gray-500">
-                    {section.photos.length}{" "}
-                    {section.photos.length === 1 ? "photo" : "photos"}
+                    {countLabel(section.photos)}
                   </span>
                 </div>
                 <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-4">
-                  {section.photos.map((src, i) => (
+                  {section.photos.map(({ url: src, isVideo }, i) => (
                     <li key={src}>
                       <button
                         type="button"
                         onClick={() =>
                           setViewer({ slug: section.slug, index: i })
                         }
-                        aria-label={`Open ${section.title} photo ${i + 1} of ${section.photos.length}`}
+                        aria-label={`Open ${section.title} ${isVideo ? "video" : "photo"} ${i + 1} of ${section.photos.length}`}
                         className="group relative block w-full aspect-square overflow-hidden rounded-lg bg-gray-100 shadow-sm hover:shadow-lg transition-shadow focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
                       >
-                        <img
-                          src={src}
-                          alt={`${section.title} – photo ${i + 1}`}
-                          loading="lazy"
-                          decoding="async"
-                          className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                        />
+                        {isVideo ? (
+                          <>
+                            <video
+                              src={`${src}#t=0.1`}
+                              preload="metadata"
+                              muted
+                              playsInline
+                              className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                            />
+                            <span className="absolute inset-0 flex items-center justify-center bg-black/20">
+                              <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-black/60 text-white">
+                                <Play className="h-6 w-6 fill-current" />
+                              </span>
+                            </span>
+                          </>
+                        ) : (
+                          <img
+                            src={src}
+                            alt={`${section.title} – photo ${i + 1}`}
+                            loading="lazy"
+                            decoding="async"
+                            className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          />
+                        )}
                       </button>
                     </li>
                   ))}
@@ -216,11 +249,22 @@ const Gallery = () => {
               </button>
             </>
           )}
-          <img
-            src={photos.photos[viewer.index]}
-            alt={`${photos.title} – photo ${viewer.index + 1}`}
-            className="relative max-h-[85dvh] max-w-full object-contain px-12 sm:px-16"
-          />
+          {photos.photos[viewer.index].isVideo ? (
+            <video
+              key={photos.photos[viewer.index].url}
+              src={photos.photos[viewer.index].url}
+              controls
+              autoPlay
+              playsInline
+              className="relative max-h-[85dvh] max-w-full object-contain px-12 sm:px-16"
+            />
+          ) : (
+            <img
+              src={photos.photos[viewer.index].url}
+              alt={`${photos.title} – photo ${viewer.index + 1}`}
+              className="relative max-h-[85dvh] max-w-full object-contain px-12 sm:px-16"
+            />
+          )}
           <div className="pointer-events-none absolute bottom-4 left-0 right-0 px-4 text-center text-sm text-white/80">
             {photos.title} · {viewer.index + 1} / {count}
           </div>
