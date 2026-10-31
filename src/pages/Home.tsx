@@ -8,13 +8,12 @@ import {
   Users,
 } from "lucide-react";
 
+import IndraReddyPhoto from "/src/assets/impact/Indra Reddy.jpeg";
+import KiranPhoto from "/src/assets/gallery/book-distribution-2022/photos-2022-095.jpg";
 import { Link } from "react-router-dom";
+import RamuluPhoto from "/src/assets/impact/Ramulu.jpeg";
 import React from "react";
 import SEOHead from "../components/SEOHead";
-import KiranPhoto from "/src/assets/gallery/book-distribution-2022/photos-2022-095.jpg";
-import RamuluPhoto from "/src/assets/impact/Ramulu.jpeg";
-import IndraReddyPhoto from "/src/assets/impact/Indra Reddy.jpeg";
-
 
 const Home: React.FC = () => {
   const stats = [
@@ -50,15 +49,15 @@ const Home: React.FC = () => {
 
   const upcomingEvents = [
     {
-      title: 'Children\'s Day Celebration 2025',
-      date: 'November 14, 2025',
-      location: 'Hyderabad & Kurnool',
+      title: "Children's Day Celebration 2026",
+      date: "November 14, 2026",
+      location: "Hyderabad & Kurnool",
       description:
         "As children represent our future generation, we are honored to organize a special Children\'s Day celebration across Hyderabad and Kurnool. This meaningful event will focus on sharing invaluable guidance and inspiring young minds with the timeless importance of moral values and ethics that shape responsible, meaningful lives in our society.",
     },
     {
-      title: 'National Youth Day Celebration 2026',
-      date: "January 14, 2026",
+      title: "National Youth Day Celebration 2027",
+      date: "January 14, 2027",
       location: "Hyderabad",
       description:
         "On this momentous National Youth Day, we dedicate ourselves to walking in the inspiring footsteps of Sri Swami Vivekananda. This special celebration will focus on inspiring young minds to embrace his timeless values and ideals, empowering them to build a brighter, more compassionate future for our nation.",
