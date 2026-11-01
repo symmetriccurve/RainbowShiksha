@@ -8,6 +8,10 @@ import QRCode from "qrcode";
 import RamuluImage from "../assets/Donations/Ramulu.png";
 import SEOHead from "../components/SEOHead";
 import ShaikSameeraImage from "../assets/Donations/Shaik-Sameera.jpeg";
+import SreenivasImage from "../assets/Donations/what-our-donors-say/s-a-sreenivas.jpeg";
+import SrinivasGuptaImage from "../assets/Donations/what-our-donors-say/p-t-srinivasa-gupta.jpeg";
+import ShambulingeshImage from "../assets/Donations/what-our-donors-say/shambulingesh.jpeg";
+import UrmilaImage from "../assets/Donations/what-our-donors-say/urmila.png";
 
 /* Legacy preset amounts retained for future interactive flows
 const presetAmounts = [
@@ -31,29 +35,95 @@ const testimonials = [
   {
     name: "Srinivas Gupta",
     location: "Japan",
-    donation: "Sponsored 2 Students",
+    image: SrinivasGuptaImage,
     quote:
       "The transparency and regular updates about the Students I sponsor make me feel connected to their journey. It's amazing to see them grow and succeed.",
   },
   {
     name: "Dr. S.A.Sreenivas",
     location: "Bangalore",
+    image: SreenivasImage,
     quote:
       "Our partnership with Rainbow Shiksha aligns with our mission to empower every person on the planet. Their work in digital education is commendable.",
   },
   {
     name: "B Shambulingesh",
     location: "holagunda",
+    image: ShambulingeshImage,
     quote:
       "Rainbow Shiksha is doing wonderful work for underprivileged students. I have seen how their support helps children stay in school and keep dreaming. Their dedication is truly commendable.",
   },
   {
     name: "Urmila Kamalapuram",
     location: "Hyderabad",
+    image: UrmilaImage,
     quote:
       "It is a joy to be part of the Rainbow Shiksha family. The team's efforts are making education possible for students who would otherwise be left behind. My heartfelt appreciation to everyone involved.",
   },
 ];
+
+type Testimonial = (typeof testimonials)[number];
+
+const QUOTE_CLAMP_LENGTH = 200;
+
+function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
+  const [expanded, setExpanded] = useState(false);
+  const quote = testimonial.quote.replace(/\s+/g, " ").trim();
+  const isLong = quote.length > QUOTE_CLAMP_LENGTH;
+  const image = "image" in testimonial ? testimonial.image : undefined;
+  const badge = "donation" in testimonial ? testimonial.donation : undefined;
+
+  return (
+    <figure className="relative flex flex-col h-full bg-white border border-gray-200 rounded-2xl p-6 pt-7 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden">
+      <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-blue-500 to-green-500" />
+      <Quote className="h-8 w-8 text-blue-200 mb-3 flex-shrink-0" />
+      <blockquote className="flex-grow mb-4">
+        <p
+          className={`text-gray-700 leading-relaxed ${
+            expanded ? "" : "line-clamp-5"
+          }`}
+        >
+          {quote}
+        </p>
+        {isLong && (
+          <button
+            type="button"
+            onClick={() => setExpanded((v) => !v)}
+            aria-expanded={expanded}
+            className="mt-2 text-sm font-medium text-blue-600 hover:text-blue-800 focus:outline-none focus-visible:underline"
+          >
+            {expanded ? "Show less" : "Read more"}
+          </button>
+        )}
+      </blockquote>
+      <figcaption className="flex items-center gap-4 pt-4 border-t border-gray-100">
+        {image ? (
+          <img
+            src={image}
+            alt={testimonial.name}
+            loading="lazy"
+            className="w-14 h-14 rounded-full object-cover object-top flex-shrink-0 ring-2 ring-white shadow-md outline outline-2 outline-blue-100"
+          />
+        ) : (
+          <div className="w-14 h-14 rounded-full bg-gradient-to-br from-blue-500 to-green-500 text-white text-lg flex items-center justify-center font-semibold flex-shrink-0 ring-2 ring-white shadow-md">
+            {testimonial.name.charAt(0)}
+          </div>
+        )}
+        <div className="min-w-0">
+          <div className="font-semibold text-gray-900">{testimonial.name}</div>
+          <div className="text-sm text-gray-500 capitalize">
+            {testimonial.location}
+          </div>
+          {badge && (
+            <span className="mt-1.5 inline-block px-2.5 py-0.5 bg-blue-50 text-blue-700 text-xs font-medium rounded-full">
+              {badge}
+            </span>
+          )}
+        </div>
+      </figcaption>
+    </figure>
+  );
+}
 
 type SponsorshipOption = {
   name: string;
@@ -928,35 +998,12 @@ export default function DonationsWithQR() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <div
-                key={index}
-                className="flex flex-col bg-white border border-gray-200 rounded-2xl p-6 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
-              >
-                <Quote className="h-8 w-8 text-blue-200 mb-3 flex-shrink-0" />
-                <p className="text-gray-700 leading-relaxed flex-grow mb-6">
-                  {testimonial.quote}
-                </p>
-                <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
-                  <div className="w-11 h-11 rounded-full bg-gradient-to-br from-blue-500 to-green-500 text-white flex items-center justify-center font-semibold flex-shrink-0">
-                    {testimonial.name.charAt(0)}
-                  </div>
-                  <div className="min-w-0">
-                    <div className="font-semibold text-gray-900 truncate">
-                      {testimonial.name}
-                    </div>
-                    <div className="text-sm text-gray-500">
-                      {testimonial.location}
-                    </div>
-                  </div>
-                </div>
-                {"donation" in testimonial && testimonial.donation && (
-                  <span className="self-start mt-4 inline-block px-3 py-1 bg-blue-50 text-blue-700 text-xs font-medium rounded-full">
-                    {testimonial.donation}
-                  </span>
-                )}
-              </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-start">
+            {testimonials.map((testimonial) => (
+              <TestimonialCard
+                key={testimonial.name}
+                testimonial={testimonial}
+              />
             ))}
           </div>
         </div>
