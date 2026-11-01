@@ -91,15 +91,6 @@ const groupByYear = (sections: EventSection[]) => {
   );
 };
 
-const countLabel = (items: MediaItem[]) => {
-  const videos = items.filter((m) => m.isVideo).length;
-  const photos = items.length - videos;
-  const parts: string[] = [];
-  if (photos) parts.push(`${photos} ${photos === 1 ? "photo" : "photos"}`);
-  if (videos) parts.push(`${videos} ${videos === 1 ? "video" : "videos"}`);
-  return parts.join(" · ");
-};
-
 const Gallery = () => {
   const sections = useMemo(buildSections, []);
   const yearGroups = useMemo(() => groupByYear(sections), [sections]);
@@ -110,6 +101,12 @@ const Gallery = () => {
   const [searchParams] = useSearchParams();
   const targetEvent = searchParams.get("event");
   const [touchX, setTouchX] = useState<number | null>(null);
+  // Two rows on mobile (one row if there are only a few years)
+  const cols =
+    yearGroups.length <= 4
+      ? yearGroups.length
+      : Math.ceil(yearGroups.length / 2);
+  const [activeYear, setActiveYear] = useState<string | null>(null);
 
   const photos = sections.find((s) => s.slug === viewer?.slug);
   const count = photos?.photos.length ?? 0;
@@ -130,6 +127,23 @@ const Gallery = () => {
       .getElementById(`event-${targetEvent}`)
       ?.scrollIntoView({ behavior: "smooth", block: "start" });
   }, [targetEvent]);
+
+  // Highlight the timeline milestone for the year currently in view
+  useEffect(() => {
+    const els = yearGroups
+      .map(([y]) => document.getElementById(`year-${y}`))
+      .filter((el): el is HTMLElement => !!el);
+    if (!els.length) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const hit = entries.find((e) => e.isIntersecting);
+        if (hit) setActiveYear(hit.target.id.replace("year-", ""));
+      },
+      { rootMargin: "-20% 0px -70% 0px" },
+    );
+    els.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, [yearGroups]);
 
   useEffect(() => {
     if (!viewer) return;
@@ -159,22 +173,86 @@ const Gallery = () => {
         aria-label="Event photo gallery"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <header className="text-center mb-8 sm:mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
+          <header className="mb-10 sm:mb-14 text-center">
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900">
               Event Gallery
             </h2>
-            <p className="text-base sm:text-lg md:text-xl text-gray-600">
+            <div
+              aria-hidden="true"
+              className="mx-auto mt-4 h-1 w-24 rounded-full bg-[linear-gradient(90deg,#ef4444,#f97316,#eab308,#22c55e,#3b82f6,#8b5cf6)]"
+            />
+            <p className="mt-4 text-base sm:text-lg text-gray-600">
               Moments from our events and programs
             </p>
+            {yearGroups.length > 1 && (
+              <nav aria-label="Jump to year" className="mt-6 sm:mt-8 pb-2">
+                <ol
+                  style={{ "--cols": cols } as React.CSSProperties}
+                  className="mx-auto grid max-w-md grid-cols-[repeat(var(--cols),minmax(0,1fr))] gap-y-5 sm:flex sm:max-w-none sm:justify-center"
+                >
+                  {yearGroups.map(([year], i) => {
+                    const active = year === activeYear;
+                    return (
+                      <li key={year} className="relative sm:w-24 sm:shrink-0">
+                        {i < yearGroups.length - 1 && (
+                          <span
+                            aria-hidden="true"
+                            className={`absolute left-1/2 top-[9px] w-full border-t-2 border-dotted border-gray-300 ${
+                              (i + 1) % cols === 0 ? "hidden sm:block" : ""
+                            }`}
+                          />
+                        )}
+                        <button
+                          type="button"
+                          aria-current={active ? "true" : undefined}
+                          onClick={() =>
+                            document
+                              .getElementById(`year-${year}`)
+                              ?.scrollIntoView({
+                                behavior: "smooth",
+                                block: "start",
+                              })
+                          }
+                          className="group relative z-10 flex min-h-11 w-full flex-col items-center gap-1.5 sm:gap-2 focus:outline-none"
+                        >
+                          <span
+                            className={`h-5 w-5 rounded-full border-2 transition-all duration-200 group-hover:scale-125 group-focus-visible:ring-2 group-focus-visible:ring-blue-500 group-focus-visible:ring-offset-2 ${
+                              active
+                                ? "scale-125 border-white bg-[linear-gradient(135deg,#ef4444,#f97316,#eab308,#22c55e,#3b82f6,#8b5cf6)] ring-4 ring-blue-100"
+                                : "border-gray-300 bg-white group-hover:border-blue-500"
+                            }`}
+                          />
+                          <span
+                            className={`text-xs sm:text-base transition-colors ${
+                              active
+                                ? "font-bold text-gray-900"
+                                : "font-medium text-gray-500 group-hover:text-gray-900"
+                            }`}
+                          >
+                            {year}
+                          </span>
+                        </button>
+                      </li>
+                    );
+                  })}
+                </ol>
+              </nav>
+            )}
           </header>
 
           {/* One independent section per event folder, all photos shown inline */}
           <div className="space-y-14 sm:space-y-20">
             {yearGroups.map(([year, yearSections]) => (
               <div key={year} id={`year-${year}`} className="scroll-mt-24">
-                <h3 className="mb-6 text-2xl sm:text-3xl font-extrabold text-blue-700">
-                  {year}
-                </h3>
+                <div className="mb-6 flex items-center gap-4">
+                  <h3 className="text-2xl sm:text-3xl font-extrabold bg-[linear-gradient(90deg,#ef4444,#f97316,#eab308,#22c55e,#3b82f6,#8b5cf6)] bg-clip-text text-transparent">
+                    {year}
+                  </h3>
+                  <div
+                    aria-hidden="true"
+                    className="h-0.5 flex-1 rounded-full bg-[linear-gradient(90deg,#ef4444,#f97316,#eab308,#22c55e,#3b82f6,#8b5cf6,transparent)] opacity-60"
+                  />
+                </div>
                 <div className="space-y-12 sm:space-y-16">
                   {yearSections.map((section) => (
                     <section
@@ -183,16 +261,19 @@ const Gallery = () => {
                       aria-labelledby={`event-title-${section.slug}`}
                       className="scroll-mt-24"
                     >
-                      <div className="mb-4 flex items-baseline justify-between gap-3 border-b border-gray-200 pb-2">
-                        <h4
-                          id={`event-title-${section.slug}`}
-                          className="text-xl sm:text-2xl font-bold text-gray-900"
-                        >
-                          {section.title}
-                        </h4>
-                        <span className="shrink-0 text-xs sm:text-sm text-gray-500">
-                          {countLabel(section.photos)}
-                        </span>
+                      <div className="mb-4 flex items-center justify-between gap-3 border-b border-gray-200 pb-3">
+                        <div className="flex items-center gap-3 min-w-0">
+                          <span
+                            aria-hidden="true"
+                            className="h-7 w-1.5 shrink-0 rounded-full bg-[linear-gradient(180deg,#ef4444,#f97316,#eab308,#22c55e,#3b82f6,#8b5cf6)]"
+                          />
+                          <h4
+                            id={`event-title-${section.slug}`}
+                            className="text-xl sm:text-2xl font-bold text-gray-900"
+                          >
+                            {section.title}
+                          </h4>
+                        </div>
                       </div>
                       <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-4">
                         {section.photos.map(({ url: src, isVideo }, i) => (
