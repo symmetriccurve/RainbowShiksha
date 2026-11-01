@@ -2,6 +2,7 @@ import { Building2, Check, Copy, Heart, Quote, Shield } from "lucide-react";
 // DonationsWithQR.tsx
 import { useEffect, useRef, useState } from "react";
 
+import GowthamiImage from "../assets/Donations/what-our-donors-say/k-gowthami-face.jpeg";
 import LaxmiDurgaImage from "../assets/Donations/Laxmi Durga.jpeg";
 import MounikaaImage from "../assets/Donations/Mounikaa.jpeg";
 import QRCode from "qrcode";
@@ -28,7 +29,7 @@ const testimonials = [
   {
     name: "Gowthami K",
     location: "Hyderabad",
-    donation: "Member since 10 years",
+    image: GowthamiImage,
     quote:
       "I have been part of rainbow family since last 10 years. They are providing education support to needy students is really a good work. Balancing professional , family , society work is not a simple job. Big shout out to the team for their hard work and dedication towards society.  Thanks to Rainbow Shiksha for making  me part of this support cycle.",
   },
@@ -71,7 +72,6 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
   const quote = testimonial.quote.replace(/\s+/g, " ").trim();
   const isLong = quote.length > QUOTE_CLAMP_LENGTH;
   const image = "image" in testimonial ? testimonial.image : undefined;
-  const badge = "donation" in testimonial ? testimonial.donation : undefined;
 
   return (
     <figure className="relative flex flex-col h-full bg-white border border-gray-200 rounded-2xl p-6 pt-7 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden">
@@ -114,11 +114,6 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
           <div className="text-sm text-gray-500 capitalize">
             {testimonial.location}
           </div>
-          {badge && (
-            <span className="mt-1.5 inline-block px-2.5 py-0.5 bg-blue-50 text-blue-700 text-xs font-medium rounded-full">
-              {badge}
-            </span>
-          )}
         </div>
       </figcaption>
     </figure>
