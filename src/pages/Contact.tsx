@@ -1,4 +1,4 @@
-import { Clock, Facebook, HeartHandshake, Instagram, Linkedin, Mail, MapPin, MessageCircle, Phone, Plus, Send } from "lucide-react";
+import { Clock, Facebook, HeartHandshake, Instagram, Linkedin, Mail, MapPin, Phone, Plus, Send } from "lucide-react";
 import React, { useState } from "react";
 import XIcon from "../components/XIcon";
 import SEOHead from "../components/SEOHead";
@@ -334,44 +334,6 @@ Please share the next steps. Thank you!`;
                       <span className="text-gray-600">{schedule.hours}</span>
                     </div>
                   ))}
-                </div>
-              </div>
-
-              {/* FAQ */}
-              <div className="bg-white rounded-xl p-6 shadow-lg">
-                <div className="flex items-center mb-4">
-                  <MessageCircle className="h-6 w-6 text-green-600 mr-2" />
-                  <h3 className="text-xl font-semibold text-gray-900">
-                    Quick Answers
-                  </h3>
-                </div>
-                <div className="space-y-4 text-sm">
-                  <div>
-                    <h4 className="font-medium text-gray-900 mb-1">
-                      How can I track my donation?
-                    </h4>
-                    <p className="text-gray-600">
-                      You'll receive a confirmation email with tracking details
-                      within 24 hours.
-                    </p>
-                  </div>
-                  <div>
-                    <h4 className="font-medium text-gray-900 mb-1">
-                      Can I visit the schools you support?
-                    </h4>
-                    <p className="text-gray-600">
-                      Yes! We organize school visits based on the upcoming events. Pleaes contact us to schedule.
-                    </p>
-                  </div>
-                  <div>
-                    <h4 className="font-medium text-gray-900 mb-1">
-                      Are donations tax-deductible?
-                    </h4>
-                    <p className="text-gray-600">
-                      Yes, all donations are eligible for 80G tax deductions
-                      under Indian Income Tax Act.
-                    </p>
-                  </div>
                 </div>
               </div>
 

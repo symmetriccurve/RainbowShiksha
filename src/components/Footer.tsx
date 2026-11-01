@@ -19,24 +19,31 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Organization Info */}
           <div>
-            <Link to="/" className="flex items-center mb-4">
-              <img src={logo} alt="Rainbow Shiksha" className="h-8 w-auto" />
+            <Link
+              to="/"
+              className="flex items-center justify-center md:justify-start mb-5"
+            >
+              <img
+                src={logo}
+                alt="Rainbow Shiksha"
+                className="h-14 sm:h-16 lg:h-[72px] w-auto max-w-full object-contain"
+              />
             </Link>
-            <p className="text-gray-300 text-sm mb-4">
+            <p className="text-gray-300 text-sm mb-4 text-center md:text-left">
               Empowering children through education and creating a brighter
               future for India's next generation.
             </p>
             <div className="space-y-2 text-sm">
-              <div className="flex items-center">
-                <Mail className="h-4 w-4 mr-2 text-blue-400" />
-                <span>RainbowShiksha@gmail.com</span>
+              <div className="flex items-center justify-center md:justify-start">
+                <Mail className="h-4 w-4 mr-2 flex-shrink-0 text-blue-400" />
+                <span className="break-all">RainbowShiksha@gmail.com</span>
               </div>
-              <div className="flex items-center">
-                <Phone className="h-4 w-4 mr-2 text-blue-400" />
+              <div className="flex items-center justify-center md:justify-start">
+                <Phone className="h-4 w-4 mr-2 flex-shrink-0 text-blue-400" />
                 <span>+91 9959277190</span>
               </div>
-              <div className="flex items-center">
-                <MapPin className="h-4 w-4 mr-2 text-blue-400" />
+              <div className="flex items-center justify-center md:justify-start">
+                <MapPin className="h-4 w-4 mr-2 flex-shrink-0 text-blue-400" />
                 <span>Kurnool, Andhra Pradesh, India</span>
               </div>
             </div>
@@ -134,12 +141,12 @@ const Footer: React.FC = () => {
                 </Link>
               </li>
               <li>
-                <a
-                  href="#"
+                <Link
+                  to="/faq"
                   className="text-gray-300 hover:text-white transition-colors"
                 >
                   FAQ
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -195,11 +202,11 @@ Youtube: Yet to Create one*/}
           </div>
         </div>
 
-        <div className="border-t border-gray-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+        <div className="border-t border-gray-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-4">
           <div className="text-sm text-gray-400">
             ©2025 Rainbow Shiksha. All rights reserved.
           </div>
-          <div className="flex space-x-6 mt-4 md:mt-0">
+          <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
             <Link
               to="/privacy-policy"
               className="text-sm text-gray-400 hover:text-white transition-colors"
