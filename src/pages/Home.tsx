@@ -9,7 +9,7 @@ import {
 } from "lucide-react";
 
 import IndraReddyPhoto from "/src/assets/impact/Indra Reddy.jpeg";
-import KiranPhoto from "/src/assets/gallery/book-distribution-2022/book-distribution-2022-05.jpg";
+import KiranPhoto from "/src/assets/gallery/fee-payment-gsmr-school-kurnool-february-2014/fee-payment-gsmr-school-kurnool-february-2014-02.jpg";
 import { Link } from "react-router-dom";
 import RamuluPhoto from "/src/assets/impact/Ramulu.jpeg";
 import React from "react";

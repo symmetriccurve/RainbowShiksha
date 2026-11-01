@@ -1,5 +1,6 @@
-import { Clock, Facebook, HeartHandshake, Instagram, Linkedin, Mail, MapPin, MessageCircle, Phone, Plus, Send, Twitter } from "lucide-react";
+import { Clock, Facebook, HeartHandshake, Instagram, Linkedin, Mail, MapPin, MessageCircle, Phone, Plus, Send } from "lucide-react";
 import React, { useState } from "react";
+import XIcon from "../components/XIcon";
 import SEOHead from "../components/SEOHead";
 
 const Contact: React.FC = () => {
@@ -396,7 +397,7 @@ Please share the next steps. Thank you!`;
                     href="https://x.com/RainbowShiksha"
                     className="text-blue-500 hover:text-blue-600 transition-colors hover:scale-110 transform duration-200"
                   >
-                    <Twitter className="h-6 w-6" />
+                    <XIcon className="h-6 w-6" />
                   </a>
                   <a
                     target="_blank"

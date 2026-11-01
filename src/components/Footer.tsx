@@ -5,11 +5,11 @@ import {
   Mail,
   MapPin,
   Phone,
-  Twitter,
 } from "lucide-react";
 
 import { Link } from "react-router-dom";
 import React from "react";
+import XIcon from "./XIcon";
 import logo from "../assets/rainbow_shiksha_logo.png";
 
 const Footer: React.FC = () => {
@@ -166,7 +166,7 @@ Youtube: Yet to Create one*/}
                 href="https://x.com/RainbowShiksha"
                 className="text-gray-300 hover:text-blue-400 transition-colors"
               >
-                <Twitter className="h-5 w-5" />
+                <XIcon className="h-5 w-5" />
               </a>
               <a
                 target="_blank"

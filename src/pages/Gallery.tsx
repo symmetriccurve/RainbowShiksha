@@ -1,7 +1,8 @@
 import { ChevronLeft, ChevronRight, Play, X } from "lucide-react";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+
 import SEOHead from "../components/SEOHead";
+import { useSearchParams } from "react-router-dom";
 
 // Every sub-folder of src/assets/gallery is its own event section.
 // Name folders "<event>-<year>" (e.g. book-distribution-2022) and files
@@ -23,11 +24,12 @@ const isVideoPath = (path: string) => /\.(mp4|webm|mov)$/i.test(path);
 // Folders without an entry get a title generated from the folder name.
 const titleOverrides: Record<string, string> = {
   "bag-donation-kbr": "Bag Donation – KBR",
-  "shaik-sameera-fee-support-2026": "Shaik Sameera – Fee Support",
+  "shaik-sameera-fee-support-february-2026": "Shaik Sameera – Fee Support",
   "mounika-fee-support-2025": "K. Mounika – Fee Support",
-  "madhava-school-computers-donation-june-2024": "Madhava School Computers Donation (June)",
-  "madhava-school-website-2026": "Madhava School Website Launch in the News",
-  "braille-event-jan-2021": "Braille Day Event (January)",
+  "madhava-school-computers-donation-june-2024":
+    "Madhava School Computers Donation (June)",
+  "madhava-school-website-2026": "Madhava School Website Launch",
+  "braille-event-january-2021": "Braille Day Event (January)",
   "p-indra-reddy-fee-support-2022": "P. Indra Reddy – Fee Support",
   "boya-ramudu-fee-support-2023": "Boya Ramudu – Fee Support",
   "puli-laxmi-durga-fee-support-2023": "Puli Lakshmi Durga – Fee Support",

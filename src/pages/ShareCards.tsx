@@ -3,12 +3,12 @@ import {
   Facebook,
   Instagram,
   Linkedin,
-  Twitter,
   Share2,
   Copy,
   Check,
   MessageCircle,
 } from "lucide-react";
+import XIcon from "../components/XIcon";
 import SEOHead from "../components/SEOHead";
 import logo from "../assets/rainbow_shiksha_logo.png";
 
@@ -95,7 +95,7 @@ const ShareCards: React.FC = () => {
     <div>
       <SEOHead
         title="Share Our Mission"
-        description="Help spread the word about Rainbow Shiksha. Share our story on Facebook, Twitter, Instagram, WhatsApp, and LinkedIn."
+        description="Help spread the word about Rainbow Shiksha. Share our story on Facebook, X, Instagram, WhatsApp, and LinkedIn."
         path="#/share"
       />
 
@@ -176,8 +176,8 @@ const ShareCards: React.FC = () => {
 
             {/* ── Twitter / X Card ───────────────────────────────────── */}
             <CardWrapper
-              label="Twitter / X"
-              icon={<Twitter className="h-5 w-5" />}
+              label="X (Twitter)"
+              icon={<XIcon className="h-5 w-5" />}
               accentColor="text-sky-500"
               buttonClassName="bg-sky-500"
               shareHref={shareLinks.twitter}
