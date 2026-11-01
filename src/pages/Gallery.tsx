@@ -5,8 +5,11 @@ import SEOHead from "../components/SEOHead";
 import { useSearchParams } from "react-router-dom";
 
 // Every sub-folder of src/assets/gallery is its own event section.
-// Name folders "<event>-<year>" (e.g. book-distribution-2022) and files
-// "<folder>-01.jpg" / "<folder>-video-01.mp4"; sections are grouped by year.
+// Name folders "<event>_<MM>-<YYYY>@<location>" (e.g.
+// bag-donation-kbr-foundation_02-2026@guntur) and files "<folder>-01.jpg" /
+// "<folder>-video-01.mp4". Month (or month + year) and location are optional:
+// "<event>_<YYYY>", "<event>_<MM>-<YYYY>", "<event>@<location>", "<event>".
+// Sections are grouped by year.
 // Drop a new folder of photos in there and it shows up automatically.
 // Videos (mp4/webm/mov) in the same folders are shown alongside the photos.
 const images = import.meta.glob(
@@ -20,20 +23,20 @@ const images = import.meta.glob(
 const isVideoPath = (path: string) => /\.(mp4|webm|mov)$/i.test(path);
 
 // Optional display-name overrides, keyed by folder name (the year is shown
-// as the year heading, so leave it out of the title).
+// as the year heading and the month/location as a subline, so leave them
+// out of the title).
 // Folders without an entry get a title generated from the folder name.
 const titleOverrides: Record<string, string> = {
-  "bag-donation-kbr": "Bag Donation – KBR",
-  "shaik-sameera-fee-support-february-2026": "Shaik Sameera – Fee Support",
-  "mounika-fee-support-2025": "K. Mounika – Fee Support",
-  "madhava-school-computers-donation-june-2024":
-    "Madhava School Computers Donation (June)",
-  "madhava-school-website-2026": "Madhava School Website Launch",
-  "braille-event-january-2021": "Braille Day Event (January)",
-  "p-indra-reddy-fee-support-2022": "P. Indra Reddy – Fee Support",
-  "boya-ramudu-fee-support-2023": "Boya Ramudu – Fee Support",
-  "puli-laxmi-durga-fee-support-2023": "Puli Lakshmi Durga – Fee Support",
-  "vanaja-devi-fee-support-2022": "Vanaja Devi – Fee Support",
+  "bag-donation-kbr-foundation_02-2026@guntur": "Bag Donation – KBR Foundation",
+  "shaik-sameera-fee-support_02-2026": "Shaik Sameera – Fee Support",
+  "mounika-fee-support_2025": "K. Mounika – Fee Support",
+  "madhava-school-computers-donation_06-2024":
+    "Madhava School Computers Donation",
+  "madhava-school-website_2026": "Madhava School Website Launch",
+  "braille-event_01-2021": "Braille Day Event",
+  "p-indra-reddy-fee-support_2022": "P. Indra Reddy – Fee Support",
+  "boya-ramudu-fee-support_2023": "Boya Ramudu – Fee Support",
+  "puli-laxmi-durga-fee-support_2023": "Puli Lakshmi Durga – Fee Support",
   "ramulu-fee-support": "Ramulu – Fee Support",
 };
 
@@ -45,6 +48,7 @@ type EventSection = {
   slug: string;
   title: string;
   year: string | null;
+  meta: string;
   photos: MediaItem[];
 };
 
@@ -55,6 +59,35 @@ const prettify = (slug: string) =>
     .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
     .join(" ");
 
+const MONTHS = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+
+// "<event>_<MM>-<YYYY>@<location>" -> parts; every part after the event is optional
+const parseSlug = (slug: string) => {
+  const m = slug.match(/^(.+?)(?:_(?:(\d{2})-)?(\d{4}))?(?:@(.+))?$/);
+  const [, event = slug, month, year, location] = m ?? [];
+  const monthName = month ? MONTHS[Number(month) - 1] : undefined;
+  return {
+    event,
+    year: year ?? null,
+    meta: [location && prettify(location), monthName]
+      .filter(Boolean)
+      .join(" · "),
+  };
+};
+
 const buildSections = (): EventSection[] => {
   const bySlug: Record<string, { path: string; url: string }[]> = {};
   for (const [path, url] of Object.entries(images)) {
@@ -63,12 +96,12 @@ const buildSections = (): EventSection[] => {
   }
   return Object.entries(bySlug)
     .map(([slug, files]) => {
-      const year = slug.match(/(?:^|[-_])(\d{4})$/)?.[1] ?? null;
-      const base = year ? slug.slice(0, -5) : slug;
+      const { event, year, meta } = parseSlug(slug);
       return {
         slug,
         year,
-        title: titleOverrides[slug] ?? prettify(base),
+        meta,
+        title: titleOverrides[slug] ?? prettify(event),
         photos: files
           .sort((a, b) =>
             a.path.localeCompare(b.path, undefined, { numeric: true }),
@@ -267,12 +300,19 @@ const Gallery = () => {
                             aria-hidden="true"
                             className="h-7 w-1.5 shrink-0 rounded-full bg-[linear-gradient(180deg,#ef4444,#f97316,#eab308,#22c55e,#3b82f6,#8b5cf6)]"
                           />
-                          <h4
-                            id={`event-title-${section.slug}`}
-                            className="text-xl sm:text-2xl font-bold text-gray-900"
-                          >
-                            {section.title}
-                          </h4>
+                          <div className="min-w-0">
+                            <h4
+                              id={`event-title-${section.slug}`}
+                              className="text-xl sm:text-2xl font-bold text-gray-900"
+                            >
+                              {section.title}
+                            </h4>
+                            {section.meta && (
+                              <p className="text-sm text-gray-500">
+                                {section.meta}
+                              </p>
+                            )}
+                          </div>
                         </div>
                       </div>
                       <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-4">

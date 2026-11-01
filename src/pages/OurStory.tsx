@@ -12,22 +12,22 @@ import React, { useCallback, useEffect, useState } from "react";
 
 import MallikarjunaPhoto from "../assets/team-photos/Mallikarjuna.png";
 import SEOHead from "../components/SEOHead";
-import journeyMounikaFeeImage from "/src/assets/our-journey/mounika-fee-support-2025-december.jpeg";
-import journeySameeraFeeSupportImage from "/src/assets/our-journey/shaik-sameera-fee-support-2026-august.jpg";
-import journeyInceptionImage from "/src/assets/our-journey/inception-of-rainbow-shiksha-2013-may.jpg";
-import journeyVivekanandaBooksImage from "/src/assets/our-journey/vivekananda-book-distribution-2014-july.jpg";
-import journeyStudentsEducationImage from "/src/assets/our-journey/supporting-students-education-2015-august.jpg";
-import journeyBlindStudents2016Image from "/src/assets/our-journey/helping-blind-students-2016-july.jpg";
-import journeyStationeryImage from "/src/assets/our-journey/stationery-distribution-2017-january.jpg";
-import journeyFestiveImage from "/src/assets/our-journey/festive-celebrations-2018-april.jpg";
-import journeyMotivatingImage from "/src/assets/our-journey/motivating-govt-school-students-2019-may.jpg";
-import journeyChildrensDayImage from "/src/assets/our-journey/childrens-day-celebration-2020-july.jpg";
-import journeyLouisBrailleImage from "/src/assets/our-journey/louis-braille-day-support-2021-february.jpg";
-import journeyGamesAwarenessImage from "/src/assets/our-journey/games-and-education-awareness-2022-may.jpg";
-import journeyTechnologyForSchoolsImage from "/src/assets/our-journey/technology-for-schools-2023-june.jpg";
-import journeyBlindStudents2024Image from "/src/assets/our-journey/support-for-blind-students-2024-september.jpg";
-import journeyRegistrationImage from "/src/assets/our-journey/official-registration-2025-october.jpg";
 import journeyBagDonationImage from "/src/assets/our-journey/bag-donation-for-school-children-2026-february.png";
+import journeyBlindStudents2016Image from "/src/assets/our-journey/helping-blind-students-2016-july.jpg";
+import journeyBlindStudents2024Image from "/src/assets/our-journey/support-for-blind-students-2024-september.jpg";
+import journeyChildrensDayImage from "/src/assets/our-journey/childrens-day-celebration-2020-july.jpg";
+import journeyFestiveImage from "/src/assets/our-journey/festive-celebrations-2018-april.jpg";
+import journeyGamesAwarenessImage from "/src/assets/our-journey/games-and-education-awareness-2022-may.jpg";
+import journeyInceptionImage from "/src/assets/our-journey/inception-of-rainbow-shiksha-2013-may.jpg";
+import journeyLouisBrailleImage from "/src/assets/our-journey/louis-braille-day-support-2021-february.jpg";
+import journeyMotivatingImage from "/src/assets/our-journey/motivating-govt-school-students-2019-may.jpg";
+import journeyMounikaFeeImage from "/src/assets/our-journey/mounika-fee-support-2025-december.jpeg";
+import journeyRegistrationImage from "/src/assets/our-journey/official-registration-2025-october.jpg";
+import journeySameeraFeeSupportImage from "/src/assets/our-journey/shaik-sameera-fee-support-2026-august.jpg";
+import journeyStationeryImage from "/src/assets/our-journey/stationery-distribution-2017-january.jpg";
+import journeyStudentsEducationImage from "/src/assets/our-journey/supporting-students-education-2015-august.jpg";
+import journeyTechnologyForSchoolsImage from "/src/assets/our-journey/technology-for-schools-2023-june.jpg";
+import journeyVivekanandaBooksImage from "/src/assets/our-journey/vivekananda-book-distribution-2014-july.jpg";
 
 const OurStory: React.FC = () => {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
@@ -146,20 +146,20 @@ const OurStory: React.FC = () => {
       image: journeyStudentsEducationImage,
     },
     {
-      year: "July 2014",
-      title: "Vivekananda Book Distribution",
-      description:
-        "Distributed Vivekananda books on the occasion of Vivekananda’s 150th Anniversary.",
-      icon: BookOpen,
-      image: journeyVivekanandaBooksImage,
-    },
-    {
       year: "May 2013",
       title: "Inception of Rainbow Shiksha",
       description:
         "Rainbow Shiksha was started with the inspiration of Saanthwana Group.",
       icon: Users,
       image: journeyInceptionImage,
+    },
+    {
+      year: "January 2014",
+      title: "Vivekananda Book Distribution",
+      description:
+        "Distributed Vivekananda books on the occasion of Vivekananda’s 150th Anniversary.",
+      icon: BookOpen,
+      image: journeyVivekanandaBooksImage,
     },
   ];
 
@@ -323,7 +323,7 @@ const OurStory: React.FC = () => {
               Our Journey
             </h2>
             <p className="text-xl text-gray-600">
-              From humble beginnings to transforming thousands of lives
+              From humble beginnings to transforming lives
             </p>
           </div>
 

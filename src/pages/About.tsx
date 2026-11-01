@@ -19,28 +19,74 @@ import RamkiPhoto from "../assets/team-photos/Rama Krishna.jpeg";
 import SahanaPhoto from "../assets/team-photos/Sahana.jpeg";
 import VikramPhoto from "../assets/team-photos/Vikram.jpeg";
 
+const MissionCard: React.FC = () => (
+  <div className="relative bg-gradient-to-br from-blue-50 via-white to-green-50 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden border border-blue-100">
+    <div className="h-2 bg-gradient-to-r from-blue-500 via-cyan-400 to-green-500" />
+    <div className="p-8">
+      <h2 className="text-3xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
+        Our Mission
+      </h2>
+      <p className="text-lg text-gray-600 leading-relaxed mb-6">
+        To provide comprehensive educational support to underprivileged
+        children across India, ensuring they have access to quality learning
+        resources, skilled teachers, and safe learning environments.
+      </p>
+      <p className="text-lg text-gray-600 leading-relaxed">
+        We work directly with local communities, schools, and families to
+        create sustainable educational programs that address the root causes
+        of educational inequality.
+      </p>
+    </div>
+  </div>
+);
+
+const VisionCard: React.FC = () => (
+  <div className="relative bg-gradient-to-br from-yellow-50 via-white to-pink-50 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden border border-yellow-100">
+    <div className="h-2 bg-gradient-to-r from-yellow-400 via-orange-400 to-pink-500" />
+    <div className="p-8">
+      <h2 className="text-3xl font-bold mb-6 bg-gradient-to-r from-orange-500 to-pink-600 bg-clip-text text-transparent">
+        Our Vision
+      </h2>
+      <p className="text-lg text-gray-600 leading-relaxed mb-6">
+        A world where every child in India has access to quality education,
+        regardless of their socioeconomic background, gender, or geographical
+        location.
+      </p>
+      <p className="text-lg text-gray-600 leading-relaxed">
+        We envision educated communities that are empowered to break the cycle
+        of poverty and contribute meaningfully to India's growth and
+        development.
+      </p>
+    </div>
+  </div>
+);
+
 const About: React.FC = () => {
   const values = [
     {
       icon: Heart,
+      accent: "from-blue-500 to-cyan-400",
       title: "Transparency",
       description:
         "We believe in complete transparency in our operations, funding, and impact reporting.",
     },
     {
       icon: Users,
+      accent: "from-green-500 to-emerald-400",
       title: "Equality",
       description:
         "Every child, regardless of background, deserves equal access to quality education.",
     },
     {
       icon: Target,
+      accent: "from-yellow-400 to-orange-400",
       title: "Empowerment",
       description:
         "Education is the most powerful tool to break the cycle of poverty and create opportunities.",
     },
     {
       icon: Award,
+      accent: "from-pink-500 to-purple-500",
       title: "Excellence",
       description:
         "We strive for excellence in everything we do, from program delivery to impact measurement.",
@@ -182,38 +228,9 @@ const About: React.FC = () => {
       {/* Mission & Vision */}
       <section className="bg-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                Our Mission
-              </h2>
-              <p className="text-lg text-gray-600 leading-relaxed mb-6">
-                To provide comprehensive educational support to underprivileged
-                children across India, ensuring they have access to quality
-                learning resources, skilled teachers, and safe learning
-                environments.
-              </p>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                We work directly with local communities, schools, and families
-                to create sustainable educational programs that address the root
-                causes of educational inequality.
-              </p>
-            </div>
-            <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                Our Vision
-              </h2>
-              <p className="text-lg text-gray-600 leading-relaxed mb-6">
-                A world where every child in India has access to quality
-                education, regardless of their socioeconomic background, gender,
-                or geographical location.
-              </p>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                We envision educated communities that are empowered to break the
-                cycle of poverty and contribute meaningfully to India's growth
-                and development.
-              </p>
-            </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+            <MissionCard />
+            <VisionCard />
           </div>
         </div>
       </section>
@@ -235,14 +252,21 @@ const About: React.FC = () => {
               return (
                 <div
                   key={index}
-                  className="bg-white p-6 rounded-xl shadow-lg text-center hover:shadow-xl transition-shadow duration-300"
+                  className="relative bg-white rounded-xl border border-gray-200 pl-6 pr-6 py-6 overflow-hidden cursor-default"
                 >
-                  <div className="w-16 h-16 bg-gradient-to-br from-blue-100 to-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Icon className="h-8 w-8 text-blue-600" />
+                  <div
+                    className={`absolute left-0 top-0 bottom-0 w-1.5 bg-gradient-to-b ${value.accent}`}
+                  />
+                  <div className="flex items-center gap-3 mb-3">
+                    <div
+                      className={`w-10 h-10 bg-gradient-to-br ${value.accent} rounded-lg flex items-center justify-center flex-shrink-0`}
+                    >
+                      <Icon className="h-5 w-5 text-white" />
+                    </div>
+                    <h3 className="text-xl font-semibold text-gray-900">
+                      {value.title}
+                    </h3>
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                    {value.title}
-                  </h3>
                   <p className="text-gray-600">{value.description}</p>
                 </div>
               );
